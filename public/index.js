@@ -1,6 +1,7 @@
 // particlesJS.load('particles-js', 'assets/particles.json', function() {
 //   console.log('callback - particles.js config loaded');
 // });
+// Test Commit
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
