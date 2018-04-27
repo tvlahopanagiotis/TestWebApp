@@ -14,7 +14,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if(user != null){
 
       var email_id = user.email;
-      document.getElementById("user_para").innerHTML = "Have fun! : " + email_id;
+      document.getElementById("user_para").innerHTML = "Συνδεθήκατε ως: " + email_id;
 
     }
 

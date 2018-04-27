@@ -9,21 +9,23 @@
 <body>
 
   <div id="login_div" class="main-div">
+    <img src="assets/img/app-negative.png" alt="Rhoé Logo">
     <h3>Rhoé Municipal Database</h3>
-    <input type="email" placeholder="Email..." id="email_field" />
-    <input type="password" placeholder="Password..." id="password_field" />
+    <input type="email" placeholder="Ηλ. Διεύθυνση" id="email_field" />
+    <input type="password" placeholder="Κωδικός Πρόσβασης" id="password_field" />
 
     <button onclick="login()">Είσοδος</button>
   </div>
 
   <div id="user_div" class="loggedin-div">
-    <h3>Welcome!</h3>
+    <img src="assets/img/app-negative.png" alt="Rhoé Logo">
+    <h3>Καλώς ήλθατε!</h3>
     <p id="user_para"> Rhoé Municipal Database. We hope you're having a great day. You're currently logged in.</p>
     <button onclick="logout()">Αποσύνδεση</button>
     <div class="btn" id="test">
       <button onclick="window.location.href = 'dashboard/dashboardtest.html'">Μετάβαση στην πλατφόρμα</button>
     </div>
-    
+
     <!-- <a href="dashboard/dashboardtest.html"> Proceed to dashboard</a> -->
   </div>
 
