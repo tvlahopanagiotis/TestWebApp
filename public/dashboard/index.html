@@ -1,0 +1,70 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Firebase Test Project</title>
+  <!-- Fonts-->
+  <link href = "https://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet">
+
+  <script src="https://use.fontawesome.com/939e9dd52c.js"></script>
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="index.css" />
+
+</head>
+<body>
+
+  <div class="mainDiv" align="left">
+    <h1 id="fireHeading" align="left"> Test app </h1>
+    <textarea id="mainText" placeholder="Enter text here..."></textarea>
+    <button id="submitBtn" onclick="submitClick()"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+  </div>
+
+  <div class = "tableDiv" align='auto'>
+    <table>
+      <thead>
+        <tr>
+          <td id="table_element">Fine</td>
+          <td>Carplate</td>
+      </thead>
+      <tbody id="table_body">
+      </tbody>
+    </table>
+  </div>
+
+  <!--div class = "mainDiv" align="left">
+    <h1>All Users </h1>
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Actions</td>
+        </tr>
+      </thead>
+      <tbody id = "table_body">
+      </tbody>
+    </table>
+  </div-->
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCWPxBqr105BYMX8BeuLknY-h62DVCtD5g",
+      authDomain: "testproject-328af.firebaseapp.com",
+      databaseURL: "https://testproject-328af.firebaseio.com",
+      projectId: "testproject-328af",
+      storageBucket: "testproject-328af.appspot.com",
+      messagingSenderId: "204830003681"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <script src = "https://code.jquery.com/jquery-3.1.0.js"></script>
+
+  <script src="index.js"></script>
+
+</body>
+</html> 

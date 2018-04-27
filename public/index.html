@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Rhoé login service</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="login_div" class="main-div">
+    <h3>Rhoé Municipal Database</h3>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Password..." id="password_field" />
+
+    <button onclick="login()">Είσοδος</button>
+  </div>
+
+  <div id="user_div" class="loggedin-div">
+    <h3>Welcome!</h3>
+    <p id="user_para"> Rhoé Municipal Database. We hope you're having a great day. You're currently logged in.</p>
+    <button onclick="logout()">Αποσύνδεση</button>
+    <div class="btn" id="test">
+      <button onclick="window.location.href = 'dashboard/dashboardtest.html'">Μετάβαση στην πλατφόρμα</button>
+    </div>
+    
+    <!-- <a href="dashboard/dashboardtest.html"> Proceed to dashboard</a> -->
+  </div>
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+     var config = {
+       apiKey: "AIzaSyCWPxBqr105BYMX8BeuLknY-h62DVCtD5g",
+       authDomain: "testproject-328af.firebaseapp.com",
+       databaseURL: "https://testproject-328af.firebaseio.com",
+       projectId: "testproject-328af",
+       storageBucket: "testproject-328af.appspot.com",
+       messagingSenderId: "204830003681"
+     };
+     firebase.initializeApp(config);
+  </script>
+  <script src="index.js"></script>
+
+</body>
+</html>

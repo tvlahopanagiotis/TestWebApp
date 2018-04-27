@@ -1,0 +1,79 @@
+head {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  color: #fff;
+}
+body {
+  background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: #fff;
+  
+}
+
+input, button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
+.main-div, .loggedin-div {
+  width: 20%;
+  margin: 0px auto;
+  margin-top: 300px;
+  padding: 15px;
+  display: none;
+}
+
+.main-div input {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  padding: 15px;
+  outline: none;
+  width: 91%;
+  margin-bottom: 20px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+}
+
+.main-div input:focus {
+  border: 1px solid #777;
+}
+
+.main-div button, .loggedin-div button {
+  background: #faa200;
+  color: #fff;
+  border: 1px solid #faa200;
+  border-radius: 5px;
+  padding: 15px;
+  display: block;
+  width: 100%;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  
+}
+
+.main-div button:hover, .loggedin-div button:hover {
+  background: #fff;
+  color: #213e79;
+  border: 1px solid #5d8ffc;
+  cursor: pointer;
+}
+
+#test button:hover {
+  background: #1f1f1f;
+  color: #fff;
+  border: 1px solid #1f1f1f;
+  border-radius: 5px;
+  padding: 30px;
+  display: block;
+  width: 100%;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+}
