@@ -61,8 +61,8 @@ rootRef.orderByChild('Time').on("child_added", snap => {
   // completearray = completearray.push(finedat);
 });
 var testarray = [
-  ["2","test","test","test","test","test"],
-  ["1","test","test","test","test","test"]
+  ["2","test","test","test","test", "ΝΑΙ"],
+  ["1","test","test","test","test", "ΟΧΙ"]
 ];
 
 $(document).ready(function() {
@@ -70,12 +70,12 @@ $(document).ready(function() {
   $('#datatable').DataTable( {
       data: testarray,
       columns: [
-          { title: "Πινακίδα κυκλοφορίας" },
-          { title: "Τύπος οχήματος" },
-          { title: "Παράβαση" },
+          { title: "Αρ. Κυκλοφορίας" },
+          { title: "Ημερομηνία" },
           { title: "Ώρα" },
-          { title: "Χρόνος" },
+          { title: "Παράβαση" },
           { title: "Ποσό προστίμου" },
+          { title: "Εξοφλημένη" }
       ]
   } );
 } );
