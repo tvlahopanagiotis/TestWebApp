@@ -37,7 +37,7 @@ var rootRef = firebase.database().ref().child("Fines").child("0000");
 
 
 var completearray = new Array;
-var finedat = [];
+// var finedat = [];
 rootRef.orderByChild('Time').on("child_added", snap => {
   var Address = snap.child("Address").val();
   var CarBrand = snap.child("CarBrand").val();
@@ -54,8 +54,8 @@ rootRef.orderByChild('Time').on("child_added", snap => {
 //  $("table_body").append("<tr><td>" + name + "</td></tr>" + email + "</td></tr>");
 //  $("#table_body").append("<tr><td>" + htmlsnippet + "</td><td>" + Carplate + "</td><td>" + CarType + "</td><td>" + FineType + "</td><td>" + Time + "</td><td>" + FineAmount + "</td></tr>");
 
-  finedat = [];
-  finedat.push(Carplate,CarType,FineType,Time,Date,FineAmount);
+  // finedat = [];
+  // finedat.push(Carplate,CarType,FineType,Time,Date,FineAmount);
   completearray.push([Carplate,CarType,FineType,Time,Date,FineAmount]);
 
   // completearray = completearray.push(finedat);
@@ -68,7 +68,7 @@ var testarray = [
 $(document).ready(function() {
   console.log(completearray);
   $('#datatable').DataTable( {
-      data: testarray,
+      data: completearray,
       columns: [
           { title: "Αρ. Κυκλοφορίας" },
           { title: "Ημερομηνία" },
