@@ -3574,4 +3574,13 @@ Created using IcoMoon - icomoon.io
   .page-header .container h6.category-absolute {
     width: 90%; } }
 
+td.details-control {
+    background: url('../assets/img/app-positive.png') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    background: url('../assets/img/app-negative.png') no-repeat center center;
+}
+
 /*# sourceMappingURL=now-ui-dashboard.css.map */

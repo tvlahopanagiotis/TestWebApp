@@ -15,6 +15,21 @@ var search_field = document.getElementById('search_field');
 // '</div>';
 
 const app =  firebase.app();
+
+/*
+// User Status
+var user = firebase.auth().currentUser();
+if (user != null) {
+  var uid = user.uid;
+  var rootRefUser = firebase.database().ref().child(uid);
+  rootRefUser.on("child_added", snap => {
+    var MunicipalID = snap.child("MID").val();
+  });
+} else {
+  window.location.href = "../index.html";
+}*/
+
+
 // console.log(app);
 // var firebaseHeadingRef = firebase.database().ref().child("Users").child("user_01").child('Email');
 // var firebaseHeadingRef = firebase.database().ref().child("Fines").child("Rhoe Administration").child("2018-03-14T22:34:52:045+0200").child('CarColor');
@@ -34,6 +49,18 @@ function submitClick() {
 };
 
 var rootRef = firebase.database().ref().child("Fines").child("0000");
+/*
+var rootRef = firebase.database().ref().child("Fines").child("0000").orderByKey();
+rootRef.once("value")
+  .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      // key will be "ada" the first time and "alan" the second time
+      var key = childSnapshot.key;
+      // childData will be the actual contents of the child
+      var childData = childSnapshot.val();
+  });
+});
+*/
 
 
 var completearray = new Array;
@@ -44,7 +71,7 @@ rootRef.orderByChild('Time').on("child_added", snap => {
   var CarColor = snap.child("CarColor").val();
   var Carplate = snap.child("CarPlate").val();
   var CarType = snap.child("CarType").val();
-  var Date = snap.child("Date").val();
+  var date = snap.child("Date").val();
   var Day = snap.child("Day").val();
   var FineAmount = snap.child("FineAmount").val();
   var FineType = snap.child("FineType").val();
@@ -56,28 +83,89 @@ rootRef.orderByChild('Time').on("child_added", snap => {
 
   // finedat = [];
   // finedat.push(Carplate,CarType,FineType,Time,Date,FineAmount);
-  completearray.push([Carplate,CarType,FineType,Time,Date,FineAmount]);
+  completearray.push(['',Carplate,CarType,FineType,Time,date,FineAmount]);
 
   // completearray = completearray.push(finedat);
 });
+
 var testarray = [
-  ["2","test","test","test","test", "ΝΑΙ"],
-  ["1","test","test","test","test", "ΟΧΙ"]
+  ['',"2","test","test","test","test", "ΝΑΙ"],
+  ['',"1","test","test","test","test", "ΟΧΙ"],
+  ['',"3","test","test","test","test", "ΟΧΙ"]
 ];
 
+function format ( d ) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td><b>Στοιχεία Οχήματος:</b></td>'+
+            '<td></td>'+
+            '<td></td>'+
+            '<td><b>Στοιχεία Παράβασης:</b></td>'+
+            '<td></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Αρ. Κυκλοφορίας:</td>'+
+            '<td>Test</td>'+
+            '<td></td>'+
+            '<td>Τύπος Παράβασης:</td>'+
+            '<td>Test</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Χρώμα:</td>'+
+            '<td>Test</td>'+
+            '<td></td>'+
+            '<td>Πρόστιμο:</td>'+
+            '<td>Test</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Κατασκευαστής:</td>'+
+            '<td>Test</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Τύπος:</td>'+
+            '<td>Test</td>'+
+        '</tr>'+
+    '</table>';
+}
+
 $(document).ready(function() {
-  console.log(completearray);
-  $('#datatable').DataTable( {
-      data: completearray,
-      columns: [
-          { title: "Αρ. Κυκλοφορίας" },
-          { title: "Ημερομηνία" },
-          { title: "Ώρα" },
-          { title: "Παράβαση" },
-          { title: "Ποσό προστίμου" },
-          { title: "Εξοφλημένη" }
-      ]
-  } );
+    var table = $('#datatable').DataTable( {
+        //"ajax": "../ajax/data/objects.txt",
+        data : testarray,
+        "columns": [
+            {
+                "className":      'details-control',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": ''
+            },
+            { title: "Αρ. Κυκλοφορίας"},
+            { title: "Ημερομηνία"},
+            { title: "Ώρα"},
+            { title: "Παράβαση"},
+            { title: "Ποσό προστίμου"},
+            { title: "Εξοφλημένη"},
+        ],
+        "order": [[1, 'asc']]
+    } );
+
+    // Add event listener for opening and closing details
+    $('#datatable tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( format(row.data()) ).show();
+            tr.addClass('shown');
+        }
+    } );
 } );
 
 
