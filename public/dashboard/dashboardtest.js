@@ -69,13 +69,14 @@ rootRef.orderByChild('Time').on("child_added", snap => {
   var Address = snap.child("Address").val();
   var CarBrand = snap.child("CarBrand").val();
   var CarColor = snap.child("CarColor").val();
-  var Carplate = snap.child("CarPlate").val();
+  var CarPlate = snap.child("CarPlate").val();
   var CarType = snap.child("CarType").val();
   var date = snap.child("Date").val();
   var Day = snap.child("Day").val();
   var FineAmount = snap.child("FineAmount").val();
   var FineType = snap.child("FineType").val();
   var Time = snap.child("Time").val();
+  var Paid = snap.child("Paid").val();
 
 
 //  $("table_body").append("<tr><td>" + name + "</td></tr>" + email + "</td></tr>");
@@ -83,7 +84,17 @@ rootRef.orderByChild('Time').on("child_added", snap => {
 
   // finedat = [];
   // finedat.push(Carplate,CarType,FineType,Time,Date,FineAmount);
-  completearray.push(['',Carplate,CarType,FineType,Time,date,FineAmount]);
+  var singleArray = {
+    blank : "",
+    carPlate : CarPlate,
+    paid : Paid,
+    fineType : FineType,
+    time : Time,
+    dat : date,
+    fineAmount : FineAmount
+
+  }
+  completearray.push(singleArray);
 
   // completearray = completearray.push(finedat);
 });
@@ -132,20 +143,27 @@ function format ( d ) {
 $(document).ready(function() {
     var table = $('#datatable').DataTable( {
         //"ajax": "../ajax/data/objects.txt",
-        data : testarray,
+        //"data" : completearray,
         "columns": [
             {
                 "className":      'details-control',
                 "orderable":      false,
                 "data":           null,
-                "defaultContent": ''
+                "defaultContent": '',
+                data: completearray.blank
             },
-            { title: "Αρ. Κυκλοφορίας"},
-            { title: "Ημερομηνία"},
-            { title: "Ώρα"},
-            { title: "Παράβαση"},
-            { title: "Ποσό προστίμου"},
-            { title: "Εξοφλημένη"},
+            { title: "Αρ. Κυκλοφορίας",
+              data : completearray.carType},
+            { title: "Ημερομηνία",
+              data : completearray.dat},
+            { title: "Ώρα",
+              data : completearray.time},
+            { title: "Παράβαση",
+              data : completearray.fineType},
+            { title: "Ποσό προστίμου",
+              data : completearray.fineAmount},
+            { title: "Εξοφλημένη",
+              data : completearray.paid},
         ],
         "order": [[1, 'asc']]
     } );
