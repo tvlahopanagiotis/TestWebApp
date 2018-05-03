@@ -48,7 +48,8 @@ function submitClick() {
   firebaseRef.push().set(messageText);
 };
 
-var rootRef = firebase.database().ref().child("Fines").child("0000");
+var dbRef = firebase.database();
+var rootRef = dbRef.ref('Fines').child('0000');
 /*
 var rootRef = firebase.database().ref().child("Fines").child("0000").orderByKey();
 rootRef.once("value")
@@ -65,7 +66,17 @@ rootRef.once("value")
 
 var completearray = new Array;
 // var finedat = [];
-rootRef.orderByChild('Time').on("child_added", snap => {
+rootRef.on("child_added", function(snap) {
+  console.log(snap.val())
+  snap.forEach(function(childSnapshot) {
+    var key = childSnapshot.key();
+    var childData = childSnapshot.val();
+  });
+});
+
+
+/*
+rootRef.on("child_added", snap => {
   var Address = snap.child("Address").val();
   var CarBrand = snap.child("CarBrand").val();
   var CarColor = snap.child("CarColor").val();
@@ -98,12 +109,14 @@ rootRef.orderByChild('Time').on("child_added", snap => {
 
   // completearray = completearray.push(finedat);
 });
-
+*/
+/*
 var testarray = [
-  ['',"2","test","test","test","test", "ΝΑΙ"],
-  ['',"1","test","test","test","test", "ΟΧΙ"],
-  ['',"3","test","test","test","test", "ΟΧΙ"]
+  [blank:"",carPlate:"2",fineAmount:"test",fineType:"test",time:"test",dat:"test",paid: "ΝΑΙ"],
+  [blank:"",carPlate:"1",fineAmount:"test",fineType:"test",time:"test",dat:"test",paid: "ΟΧΙ"],
+  [blank:"",carPlate:"3",fineAmount:"test",fineType:"test",time:"test",dat:"test",paid: "ΟΧΙ"]
 ];
+*/
 
 function format ( d ) {
     // `d` is the original data object for the row
@@ -127,7 +140,7 @@ function format ( d ) {
             '<td>Test</td>'+
             '<td></td>'+
             '<td>Πρόστιμο:</td>'+
-            '<td>Test</td>'+
+            '<td>35</td>'+
         '</tr>'+
         '<tr>'+
             '<td>Κατασκευαστής:</td>'+
@@ -144,26 +157,33 @@ $(document).ready(function() {
     var table = $('#datatable').DataTable( {
         //"ajax": "../ajax/data/objects.txt",
         //"data" : completearray,
+        data : snap,
         "columns": [
             {
                 "className":      'details-control',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": '',
-                data: completearray.blank
             },
-            { title: "Αρ. Κυκλοφορίας",
-              data : completearray.carType},
+            /*{ title: "Αρ. Κυκλοφορίας",
+              "data" : "carType"},
             { title: "Ημερομηνία",
-              data : completearray.dat},
+              "data" : "dat"},
             { title: "Ώρα",
-              data : completearray.time},
+              "data" : "time"},
             { title: "Παράβαση",
-              data : completearray.fineType},
+              "data" : "fineType"},
             { title: "Ποσό προστίμου",
-              data : completearray.fineAmount},
+              "data" : "fineAmount"},
             { title: "Εξοφλημένη",
-              data : completearray.paid},
+              "data" : "paid"},
+              */
+              {"data":"CarPlate"},
+              {"data":"Date"},
+              {"data":"Time"},
+              {"data":"FineType"},
+              {"data":"FineAmount"},
+              {"data":"Paid"},
         ],
         "order": [[1, 'asc']]
     } );
