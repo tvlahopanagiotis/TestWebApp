@@ -163,9 +163,7 @@ $(document).ready(function() {
                 "className":      'details-control',
                 "orderable":      false,
                 "data":           null,
-                "defaultContent": 'Πληροφορίες',
-                "text_center": true
-
+                "defaultContent": 'Πληροφορίες'
             },
             { title: "Αρ. Κυκλοφορίας"},
             { title: "Ημερομηνία"},
@@ -173,7 +171,7 @@ $(document).ready(function() {
             { title: "Παράβαση"},
             { title: "Εξόφληση",
                 "className":      'pay-control',
-                "orderable":      false
+                "orderable":      true
                 //"data":           null,
                 //"defaultContent": ''
               },

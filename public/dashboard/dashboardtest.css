@@ -3579,6 +3579,7 @@ td.details-control {
     cursor: pointer;
     color: #fff;
     border-radius: 25px;
+    border: 5px solid #fff;
     text-align: center;
 }
 
@@ -3592,6 +3593,7 @@ td.pay-control {
     cursor: pointer;
     color: #fff;
     border-radius: 25px;
+    border: 5px solid #fff;
     text-align: center;
 }
 
@@ -3605,6 +3607,7 @@ td.print-control {
     cursor: pointer;
     color: #fff;
     border-radius: 25px;
+    border: 5px solid #fff;
     text-align: center;
 }
 
