@@ -110,13 +110,13 @@ rootRef.on("child_added", snap => {
   // completearray = completearray.push(finedat);
 });
 */
-/*
+
 var testarray = [
-  [blank:"",carPlate:"2",fineAmount:"test",fineType:"test",time:"test",dat:"test",paid: "ΝΑΙ"],
-  [blank:"",carPlate:"1",fineAmount:"test",fineType:"test",time:"test",dat:"test",paid: "ΟΧΙ"],
-  [blank:"",carPlate:"3",fineAmount:"test",fineType:"test",time:"test",dat:"test",paid: "ΟΧΙ"]
+  ['',"2","test","test","test","test","ΝΑΙ"],
+  ['',"1","test","test","test","test","OXI"],
+  ['',"3","test","test","test","test","ΝΑΙ"]
 ];
-*/
+
 
 function format ( d ) {
     // `d` is the original data object for the row
@@ -157,33 +157,28 @@ $(document).ready(function() {
     var table = $('#datatable').DataTable( {
         //"ajax": "../ajax/data/objects.txt",
         //"data" : completearray,
-        data : snap,
+        data : testarray,
         "columns": [
             {
                 "className":      'details-control',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": '',
+                "data": ''
             },
-            /*{ title: "Αρ. Κυκλοφορίας",
-              "data" : "carType"},
-            { title: "Ημερομηνία",
-              "data" : "dat"},
-            { title: "Ώρα",
-              "data" : "time"},
-            { title: "Παράβαση",
-              "data" : "fineType"},
-            { title: "Ποσό προστίμου",
-              "data" : "fineAmount"},
-            { title: "Εξοφλημένη",
-              "data" : "paid"},
-              */
+            { title: "Αρ. Κυκλοφορίας"},
+            { title: "Ημερομηνία"},
+            { title: "Ώρα"},
+            { title: "Παράβαση"},
+            { title: "Ποσό προστίμου"},
+            { title: "Εξοφλημένη"},
+              /*
               {"data":"CarPlate"},
               {"data":"Date"},
               {"data":"Time"},
               {"data":"FineType"},
               {"data":"FineAmount"},
-              {"data":"Paid"},
+              {"data":"Paid"},*/
         ],
         "order": [[1, 'asc']]
     } );
