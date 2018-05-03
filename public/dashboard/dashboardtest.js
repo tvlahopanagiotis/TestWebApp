@@ -112,9 +112,9 @@ rootRef.on("child_added", snap => {
 */
 
 var testarray = [
-  ['',"2","test","test","test","test","ΝΑΙ"],
-  ['',"1","test","test","test","test","OXI"],
-  ['',"3","test","test","test","test","ΝΑΙ"]
+  ['',"ΑΑΑ-1234","23/12/2017","18:55","40€","Πληρώθηκε",''],
+  ['',"ΒΒΒ-1234","10/02/2018","09:10","20€","Πληρωμή",''],
+  ['',"ΓΓΓ-1234","13/03/2018","12:35","80€","Πληρωμή",'']
 ];
 
 
@@ -163,15 +163,26 @@ $(document).ready(function() {
                 "className":      'details-control',
                 "orderable":      false,
                 "data":           null,
-                "defaultContent": '',
-                "data": ''
+                "defaultContent": 'Πληροφορίες',
+                "text_center": true
+
             },
             { title: "Αρ. Κυκλοφορίας"},
             { title: "Ημερομηνία"},
             { title: "Ώρα"},
             { title: "Παράβαση"},
-            { title: "Ποσό προστίμου"},
-            { title: "Εξοφλημένη"},
+            { title: "Εξόφληση",
+                "className":      'pay-control',
+                "orderable":      false
+                //"data":           null,
+                //"defaultContent": ''
+              },
+            {
+                "className":      'print-control',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": 'Εκτύπωση'
+            },
               /*
               {"data":"CarPlate"},
               {"data":"Date"},
@@ -180,6 +191,7 @@ $(document).ready(function() {
               {"data":"FineAmount"},
               {"data":"Paid"},*/
         ],
+
         "order": [[1, 'asc']]
     } );
 
@@ -198,6 +210,23 @@ $(document).ready(function() {
             row.child( format(row.data()) ).show();
             tr.addClass('shown');
         }
+    } );
+
+    // Pay Button
+    $('#datatable tbody').on('click', 'td.pay-control', function () {
+      var tr = $(this).closest('tr');
+      var cell = table.cell( this );
+
+      if ( cell == "Πληρωμή" ) {
+          tr.addClass('pay');
+      }
+      else {
+          tr.removeClass('pay');
+      }
+    } );
+    // Print Button
+    $('#datatable tbody').on('click', 'td.print-control', function () {
+
     } );
 } );
 

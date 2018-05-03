@@ -3575,12 +3575,41 @@ Created using IcoMoon - icomoon.io
     width: 90%; } }
 
 td.details-control {
-    background: url('../assets/img/app-positive.png') no-repeat center center;
+    background: #1f1f1f;
     cursor: pointer;
+    color: #fff;
+    border-radius: 25px;
+    text-align: center;
 }
 
 tr.shown td.details-control {
-    background: url('../assets/img/app-negative.png') no-repeat center center;
+    background: #39c0ba;
+}
+
+td.pay-control {
+    padding: 5px;
+    background:#FFA500;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 25px;
+    text-align: center;
+}
+
+tr.pay td.pay-control {
+  background:#39c0ba;
+}
+
+td.print-control {
+    padding: 5px;
+    background:#39c0ba;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 25px;
+    text-align: center;
+}
+
+tr.shown td.print-control {
+    background: #39c0ba;
 }
 
 /*# sourceMappingURL=now-ui-dashboard.css.map */
