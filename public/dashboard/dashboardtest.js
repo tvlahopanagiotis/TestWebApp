@@ -49,7 +49,7 @@ function submitClick() {
 };
 
 var dbRef = firebase.database();
-var rootRef = dbRef.ref('Fines').child('0000');
+var rootRef = dbRef.ref('Fines').child('0000').orderByKey();
 /*
 var rootRef = firebase.database().ref().child("Fines").child("0000").orderByKey();
 rootRef.once("value")
@@ -62,18 +62,133 @@ rootRef.once("value")
   });
 });
 */
+var testarray = [
+  ['',"ΑΑΑ-1234","23/12/2017","18:55","40€","Πληρώθηκε",''],
+  ['',"ΒΒΒ-1234","10/02/2018","09:10","20€","Πληρωμή",''],
+  ['',"ΓΓΓ-1234","13/03/2018","12:35","80€","Πληρωμή",'']
+];
+var dataTable = [];
+
+rootRef.once("value")
+  .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      // key will be "ada" the first time and "alan" the second time
+
+      // childData will be the actual contents of the child
+      var Address = childSnapshot.child("Address").val();
+      var CarBrand = childSnapshot.child("CarBrand").val();
+      var CarColor = childSnapshot.child("CarColor").val();
+      var CarCountry = childSnapshot.child("CarCountry").val();
+      var CarPlate = childSnapshot.child("CarPlate").val();
+      var CarType = childSnapshot.child("CarType").val();
+      var date = childSnapshot.child("Date").val();
+      var Day = childSnapshot.child("Day").val();
+      var FineAmount = childSnapshot.child("FineAmount").val();
+      var FinePoints = childSnapshot.child("FinePoints").val();
+      var FineType = childSnapshot.child("FineType").val();
+      var Lat = childSnapshot.child("Lat").val();
+      var Lon = childSnapshot.child("Lon").val();
+      var Paid = childSnapshot.child("Paid").val();
+      var Time = childSnapshot.child("Time").val();
+      var UserID = childSnapshot.child("UserID").val();
+
+      testarray.push(['', CarPlate, date, Time, FineAmount, Paid, '']);
+  });
+  $(document).ready(function() {
+      var table = $('#datatable').DataTable( {
+          //"ajax": "../ajax/data/objects.txt",
+          data : testarray,
+          //"ajax": "fineobject.json",
+
+          "columns": [
+              {
+                  "className":      'details-control',
+                  "orderable":      false,
+                  "data":           null,
+                  "defaultContent": 'Πληροφορίες'
+              },
+              { title: "Αρ. Κυκλοφορίας"
+              },
+              { title: "Ημερομηνία"
+              },
+              { title: "Ώρα"
+              },
+              { title: "Παράβαση"
+              },
+              { title: "Εξόφληση",
+                  "className":      'pay-control',
+                  "orderable":      true
+                },
+              {
+                  "className":      'print-control',
+                  "orderable":      false,
+                  "data":           null,
+                  "defaultContent": 'Εκτύπωση'
+              },
+              /*
+                {"data":"CarPlate"},
+                {"data":"Date"},
+                {"data":"Time"},
+                {"data":"FineType"},
+                {"data":"FineAmount"},
+                {"data":"Paid"},
+                */
+          ],
 
 
+          "order": [[1, 'asc']]
+      } );
+
+      // Pay Button
+      $('#datatable tbody').on('click', 'td.pay-control', function () {
+        var cell = table.cell( this );
+
+        if ( cell == "Πληρωμή" ) {
+          tr.removeClass('pay-control')
+            tr.addClass('pay-control-paid');
+        }
+        else {
+          tr.removeClass('pay-control-paid')
+            tr.addClass('pay-control');
+        }
+      } );
+
+      // Add event listener for opening and closing details
+      $('#datatable tbody').on('click', 'td.details-control', function () {
+          var tr = $(this).closest('tr');
+          var row = table.row( tr );
+
+          if ( row.child.isShown() ) {
+              // This row is already open - close it
+              row.child.hide();
+              tr.removeClass('shown');
+          }
+          else {
+              // Open this row
+              row.child( format(row.data()) ).show();
+              tr.addClass('shown');
+          }
+      } );
+
+
+      // Print Button
+      $('#datatable tbody').on('click', 'td.print-control', function () {
+
+      } );
+  } );
+  return testarray;
+});
+/*
 var completearray = new Array;
 // var finedat = [];
-rootRef.on("child_added", function(snap) {
-  console.log(snap.val())
-  snap.forEach(function(childSnapshot) {
-    var key = childSnapshot.key();
+rootRef.on("child_added", function(data) {
+  console.log(data.val())
+  data.forEach(function(childSnapshot) {
+    var key = childSnapshot.key;
     var childData = childSnapshot.val();
   });
 });
-
+*/
 
 /*
 rootRef.on("child_added", snap => {
@@ -111,12 +226,6 @@ rootRef.on("child_added", snap => {
 });
 */
 
-var testarray = [
-  ['',"ΑΑΑ-1234","23/12/2017","18:55","40€","Πληρώθηκε",''],
-  ['',"ΒΒΒ-1234","10/02/2018","09:10","20€","Πληρωμή",''],
-  ['',"ΓΓΓ-1234","13/03/2018","12:35","80€","Πληρωμή",'']
-];
-
 
 function format ( d ) {
     // `d` is the original data object for the row
@@ -153,80 +262,7 @@ function format ( d ) {
     '</table>';
 }
 
-$(document).ready(function() {
-    var table = $('#datatable').DataTable( {
-        //"ajax": "../ajax/data/objects.txt",
-        //"data" : completearray,
-        data : testarray,
-        "columns": [
-            {
-                "className":      'details-control',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": 'Πληροφορίες'
-            },
-            { title: "Αρ. Κυκλοφορίας"},
-            { title: "Ημερομηνία"},
-            { title: "Ώρα"},
-            { title: "Παράβαση"},
-            { title: "Εξόφληση",
-                "className":      'pay-control',
-                "orderable":      true
-                //"data":           null,
-                //"defaultContent": ''
-              },
-            {
-                "className":      'print-control',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": 'Εκτύπωση'
-            },
-              /*
-              {"data":"CarPlate"},
-              {"data":"Date"},
-              {"data":"Time"},
-              {"data":"FineType"},
-              {"data":"FineAmount"},
-              {"data":"Paid"},*/
-        ],
 
-        "order": [[1, 'asc']]
-    } );
-
-    // Add event listener for opening and closing details
-    $('#datatable tbody').on('click', 'td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row( tr );
-
-        if ( row.child.isShown() ) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-        }
-        else {
-            // Open this row
-            row.child( format(row.data()) ).show();
-            tr.addClass('shown');
-        }
-    } );
-
-    // Pay Button
-    $('#datatable tbody').on('click', 'td.pay-control', function () {
-      var tr = $(this).closest('tr');
-      var cell = table.cell( this );
-
-      if ( cell == "Πληρωμή" ) {
-          tr.addClass('pay');
-      }
-      else {
-          tr.removeClass('pay');
-      }
-    } );
-    // Print Button
-    $('#datatable tbody').on('click', 'td.print-control', function () {
-
-    } );
-} );
 
 
 // if(search_field = null) {
