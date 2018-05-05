@@ -39,3 +39,44 @@
 [info] i  hosting: Serving hosting files from: public
 [info] +  hosting: Local server: http://localhost:5000
 
+[debug] [2018-05-05T10:27:17.883Z] ----------------------------------------------------------------------
+[debug] [2018-05-05T10:27:17.886Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kosti\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-05-05T10:27:17.886Z] CLI Version:   3.18.4
+[debug] [2018-05-05T10:27:17.886Z] Platform:      win32
+[debug] [2018-05-05T10:27:17.886Z] Node Version:  v8.11.1
+[debug] [2018-05-05T10:27:17.887Z] Time:          Sat May 05 2018 13:27:17 GMT+0300 (GTB Daylight Time)
+[debug] [2018-05-05T10:27:17.887Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-05-05T10:27:17.901Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-05-05T10:27:17.902Z] > authorizing via signed-in user
+[debug] [2018-05-05T10:27:17.904Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-05-05T10:27:17.904Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/yTGEsUQobq2CD8g0KLiaeoGXtI4BzIdRZC3904bUP_8',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat May 05 2018 13:27:17 GMT+0300 (GTB Daylight Time)
+[debug] [2018-05-05T10:27:18.251Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-05T10:27:18.293Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/testproject-328af  
+  
+ Sat May 05 2018 13:27:18 GMT+0300 (GTB Daylight Time)
+[debug] [2018-05-05T10:27:19.398Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-05T10:27:19.400Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/testproject-328af/tokens  
+  
+ Sat May 05 2018 13:27:19 GMT+0300 (GTB Daylight Time)
+[debug] [2018-05-05T10:27:20.214Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-05T10:27:20.216Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/testproject-328af  
+  
+ Sat May 05 2018 13:27:20 GMT+0300 (GTB Daylight Time)
+[debug] [2018-05-05T10:27:21.300Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\kosti\github\TestWebApp'...
+[info] 
+[debug] [2018-05-05T10:27:21.306Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/204830003681/clients/_:getWebAppConfig  
+  
+ Sat May 05 2018 13:27:21 GMT+0300 (GTB Daylight Time)
+[debug] [2018-05-05T10:27:21.954Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
