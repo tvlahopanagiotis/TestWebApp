@@ -50,24 +50,10 @@ function submitClick() {
 
 var dbRef = firebase.database();
 var rootRef = dbRef.ref('Fines').child('0000').orderByKey();
-/*
-var rootRef = firebase.database().ref().child("Fines").child("0000").orderByKey();
-rootRef.once("value")
-  .then(function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-      // key will be "ada" the first time and "alan" the second time
-      var key = childSnapshot.key;
-      // childData will be the actual contents of the child
-      var childData = childSnapshot.val();
-  });
-});
-*/
-var testarray = [
-  ['',"ΑΑΑ-1234","23/12/2017","18:55","40€","Πληρώθηκε",''],
-  ['',"ΒΒΒ-1234","10/02/2018","09:10","20€","Πληρωμή",''],
-  ['',"ΓΓΓ-1234","13/03/2018","12:35","80€","Πληρωμή",'']
-];
-var dataTable = [];
+
+var FineTable = [];
+var FineCarDetails = [];
+var FineTypeDetails = [];
 
 rootRef.once("value")
   .then(function(snapshot) {
@@ -92,13 +78,19 @@ rootRef.once("value")
       var Time = childSnapshot.child("Time").val();
       var UserID = childSnapshot.child("UserID").val();
 
-      testarray.push(['', CarPlate, date, Time, FineAmount, Paid, '']);
+      if (Paid == "No") {
+        Paid = "Πληρωμή";
+      } else {
+        Paid = "Πληρώθηκε";
+      }
+
+      FineTable.push(['', CarPlate, date, Time, FineAmount, Paid, '', CarCountry]);
+      FineCarDetails.push([CarPlate + " (" + CarCountry + ")", CarColor, CarBrand, CarType]);
+      FineTypeDetails.push([FineType, FineAmount, Day + " " + date + " " + Time, Address]);
   });
   $(document).ready(function() {
       var table = $('#datatable').DataTable( {
-          //"ajax": "../ajax/data/objects.txt",
-          data : testarray,
-          //"ajax": "fineobject.json",
+          data : FineTable,
 
           "columns": [
               {
@@ -107,14 +99,10 @@ rootRef.once("value")
                   "data":           null,
                   "defaultContent": 'Πληροφορίες'
               },
-              { title: "Αρ. Κυκλοφορίας"
-              },
-              { title: "Ημερομηνία"
-              },
-              { title: "Ώρα"
-              },
-              { title: "Παράβαση"
-              },
+              { title: "Αρ. Κυκλοφορίας"},
+              { title: "Ημερομηνία"},
+              { title: "Ώρα"},
+              { title: "Παράβαση"},
               { title: "Εξόφληση",
                   "className":      'pay-control',
                   "orderable":      true
@@ -125,16 +113,22 @@ rootRef.once("value")
                   "data":           null,
                   "defaultContent": 'Εκτύπωση'
               },
-              /*
-                {"data":"CarPlate"},
-                {"data":"Date"},
-                {"data":"Time"},
-                {"data":"FineType"},
-                {"data":"FineAmount"},
-                {"data":"Paid"},
-                */
+              { title: "Χώρα"},
           ],
 
+          "columnDefs": [
+            {
+                "targets": [1],
+                "render": function ( data, type, row ) {
+                    return data +' ('+ row[7]+')';
+                }
+            },
+            {
+                "targets": [7],
+                "visible": false,
+                "searchable": false
+            },
+          ],
 
           "order": [[1, 'asc']]
       } );
@@ -165,7 +159,7 @@ rootRef.once("value")
           }
           else {
               // Open this row
-              row.child( format(row.data()) ).show();
+              row.child( format(row.index()) ).show();
               tr.addClass('shown');
           }
       } );
@@ -176,8 +170,9 @@ rootRef.once("value")
 
       } );
   } );
-  return testarray;
+  return FineTable;
 });
+
 /*
 var completearray = new Array;
 // var finedat = [];
@@ -190,44 +185,9 @@ rootRef.on("child_added", function(data) {
 });
 */
 
-/*
-rootRef.on("child_added", snap => {
-  var Address = snap.child("Address").val();
-  var CarBrand = snap.child("CarBrand").val();
-  var CarColor = snap.child("CarColor").val();
-  var CarPlate = snap.child("CarPlate").val();
-  var CarType = snap.child("CarType").val();
-  var date = snap.child("Date").val();
-  var Day = snap.child("Day").val();
-  var FineAmount = snap.child("FineAmount").val();
-  var FineType = snap.child("FineType").val();
-  var Time = snap.child("Time").val();
-  var Paid = snap.child("Paid").val();
-
-
-//  $("table_body").append("<tr><td>" + name + "</td></tr>" + email + "</td></tr>");
-//  $("#table_body").append("<tr><td>" + htmlsnippet + "</td><td>" + Carplate + "</td><td>" + CarType + "</td><td>" + FineType + "</td><td>" + Time + "</td><td>" + FineAmount + "</td></tr>");
-
-  // finedat = [];
-  // finedat.push(Carplate,CarType,FineType,Time,Date,FineAmount);
-  var singleArray = {
-    blank : "",
-    carPlate : CarPlate,
-    paid : Paid,
-    fineType : FineType,
-    time : Time,
-    dat : date,
-    fineAmount : FineAmount
-
-  }
-  completearray.push(singleArray);
-
-  // completearray = completearray.push(finedat);
-});
-*/
-
-
 function format ( d ) {
+  var fineCarTable = FineCarDetails
+  var fineTypeTable = FineTypeDetails
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr>'+
@@ -239,35 +199,31 @@ function format ( d ) {
         '</tr>'+
         '<tr>'+
             '<td>Αρ. Κυκλοφορίας:</td>'+
-            '<td>Test</td>'+
+            '<td>' + fineCarTable [d][0] + '</td>'+
             '<td></td>'+
             '<td>Τύπος Παράβασης:</td>'+
-            '<td>Test</td>'+
+            '<td>' + fineTypeTable [d][0] + '</td>'+
         '</tr>'+
         '<tr>'+
             '<td>Χρώμα:</td>'+
-            '<td>Test</td>'+
+            '<td>' + fineCarTable [d][1] + '</td>'+
             '<td></td>'+
             '<td>Πρόστιμο:</td>'+
-            '<td>35</td>'+
+            '<td>' + fineTypeTable [d][1] + '</td>'+
         '</tr>'+
         '<tr>'+
             '<td>Κατασκευαστής:</td>'+
-            '<td>Test</td>'+
+            '<td>' + fineCarTable [d][2] + '</td>'+
+            '<td></td>'+
+            '<td>Ημερομηνία:</td>'+
+            '<td>' + fineTypeTable [d][2] + '</td>'+
         '</tr>'+
         '<tr>'+
             '<td>Τύπος:</td>'+
-            '<td>Test</td>'+
+            '<td>' + fineCarTable [d][3] + '</td>'+
+            '<td></td>'+
+            '<td>Διεύθυνση:</td>'+
+            '<td>' + fineTypeTable [d][3] + '</td>'+
         '</tr>'+
     '</table>';
 }
-
-
-
-
-// if(search_field = null) {
-//   $("#table_body").append("<tr><td>" + htmlsnippet + "</td><td>" + Carplate + "</td><td>" + CarType + "</td><td>" + FineType + "</td><td>" + Time + "</td><td>" + FineAmount + "</td></tr>");
-// } else {
-//   var search_query = rootref.orderByValue().equalTo(search_field);
-
-// }
