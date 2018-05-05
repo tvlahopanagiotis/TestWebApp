@@ -226,4 +226,4 @@ function format ( d ) {
             '<td>' + fineTypeTable [d][3] + '</td>'+
         '</tr>'+
     '</table>';
-}
+};
