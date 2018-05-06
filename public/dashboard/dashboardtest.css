@@ -3615,4 +3615,21 @@ tr.shown td.print-control {
     background: #39c0ba;
 }
 
+.dataTables_filter input {
+  width: 300px;
+  height: 26px;
+  font-size: 16px;
+  border-radius: 20px;
+  border-color: #39C0BA;
+  margin-bottom: 5px;
+}
+
+.dataTables_filter {
+  font-size: 20px;
+}
+
+.dataTables_length {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
 /*# sourceMappingURL=now-ui-dashboard.css.map */

@@ -92,15 +92,24 @@ rootRef.once("value")
 
           "columns": [
               {
-                  "className":      'details-control',
+                  "className":      'details-control ',
                   "orderable":      false,
                   "data":           null,
                   "defaultContent": 'Πληροφορίες'
               },
-              { title: "Αρ. Κυκλοφορίας"},
-              { title: "Ημερομηνία"},
-              { title: "Ώρα"},
-              { title: "Παράβαση"},
+              {
+                 title: "Αρ. Κυκλοφορίας",
+                 "className": "dt-center",
+              },
+              { title: "Ημερομηνία",
+              "className": "dt-center",
+              },
+              { title: "Ώρα",
+              "className": "dt-center",
+              },
+              { title: "Παράβαση",
+              "className": "dt-center",
+              },
               { title: "Εξόφληση",
                   "className":      'pay-control',
                   "orderable":      true
@@ -225,3 +234,8 @@ function format ( d ) {
         '</tr>'+
     '</table>';
 };
+
+document.getElementById('logout').addEventListener('click', function(event) {
+  firebase.auth().signOut();
+  window.location.replace("../index.html");
+});
