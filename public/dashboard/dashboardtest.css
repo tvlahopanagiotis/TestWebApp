@@ -285,11 +285,12 @@ Copyright (c) 2015 Daniel Eden
   margin: 5px 1px;
   border: none;
   margin: 10px 1px;
-  border-radius: 0.1875rem;
+  border-radius: 25px;
   padding: 11px 22px;
   cursor: pointer;
-  background-color: #888;
-  color: #FFFFFF;}
+  background-color: #1f1f1f;
+  color: #FFFFFF;
+  text-align: center;}
 
   .btn:hover, .btn:focus, .btn:active, .btn.active, .btn:active:focus, .btn:active:hover, .btn.active:focus, .btn.active:hover,
   .show > .btn.dropdown-toggle,
@@ -451,16 +452,27 @@ Copyright (c) 2015 Daniel Eden
       position: fixed; /* Set the navbar to fixed position */
       top: 0; /* Position the navbar at the top of the page */
     }
+    /*
+    padding: 5px;
+    background:#39c0ba;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 25px;
+    border: 5px solid #fff;
+    text-align: center;
+    */
 
 
 .btn-primary {
-  background-color: #f96332;
-  color: #FFFFFF; }
+  background-color: #39c0ba;
+  color: #FFFFFF;
+  border-radius: 25px;
+  text-align: center;}
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary:active:focus, .btn-primary:active:hover, .btn-primary.active:focus, .btn-primary.active:hover,
   .show > .btn-primary.dropdown-toggle,
   .show > .btn-primary.dropdown-toggle:focus,
   .show > .btn-primary.dropdown-toggle:hover {
-    background-color: #fa7a50;
+    background-color: #1f1f1f;
     color: #FFFFFF;
     -webkit-box-shadow: none;
             box-shadow: none; }

@@ -142,14 +142,41 @@ function populateDatatable () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
         var cell = table.cell( this );
+
         if (FineTable [row.index()][6] == "Πληρωμή") {
           fineRef = dbRef.ref('Fines').child(MunicipalID).child(FineTable [row.index()][0])
+
+          $('#exampleModalCenter').on('show.bs.modal', function (e) {
+            var modal = $(this)
+            modal.find('.modal-body').text("Αρ. Κυκλοφορίας: " + FineTable [row.index()][2]);
+
+          });
+
+          $('#exampleModalCenter').modal({
+              keyboard: false
+          });
+
+          /*
+          $('#exampleModalCenter').on('shown.bs.modal', function (e) {
+            $''
+            document.getElementById("payConfirmClick").onclick = updatePaid();
+
+            function updatePaid() {
+              fineRef.update({"Paid" : "Yes"});
+              table.destroy();
+              FineTable = [];
+              FineCarDetails = [];
+              FineTypeDetails = [];
+              window.location.href = "dashboardtest.html";
+            }
+          });*/
+          /*
           fineRef.update({"Paid" : "Yes"});
           table.destroy();
           FineTable = [];
           FineCarDetails = [];
           FineTypeDetails = [];
-          window.location.href = "dashboardtest.html";
+          window.location.href = "dashboardtest.html";*/
         } /*else {
           fineRef = dbRef.ref('Fines').child(MunicipalID).child(FineTable [row.index()][0])
           fineRef.update({"Paid" : "No"});
@@ -189,7 +216,6 @@ function populateDatatable () {
 
       // Print Button
       $('#datatable tbody').on('click', 'td.print-control', function () {
-        $('#myModal').modal(options);
       } );
   } );
 }
