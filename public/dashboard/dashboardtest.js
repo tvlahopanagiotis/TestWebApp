@@ -1,96 +1,86 @@
+const app =  firebase.app();
 var database = firebase.database();
 var Header1 = document.getElementById('Header1');
 var search_field = document.getElementById('search_field');
-// var check = document.getElementById("check");
-// $("table_body").innerHTML = null;
-// var check.innerHTML = '<label class="form-check-label> \n <input class="form-check-input" type="checkbox" checked=""> \n <span class="form-check-sign"></span> \n </label>'
-
-// var htmlsnippet = '<div id="check" class="form-check">'+
-// '<label class="form-check-label">'+
-// '<input class="form-check-input" type="checkbox" checked="">'+
-// '<span class="form-check-sign"></span>'+
-// '</label>'+
-// '</div>';
-
-const app =  firebase.app();
-
-/*
-// User Status
-var user = firebase.auth().currentUser();
-if (user != null) {
-  var uid = user.uid;
-  var rootRefUser = firebase.database().ref().child(uid);
-  rootRefUser.on("child_added", snap => {
-    var MunicipalID = snap.child("MID").val();
-  });
-} else {
-  window.location.href = "../index.html";
-}*/
-
-
-// console.log(app);
-// var firebaseHeadingRef = firebase.database().ref().child("Users").child("user_01").child('Email');
-// var firebaseHeadingRef = firebase.database().ref().child("Fines").child("Rhoe Administration").child("2018-03-14T22:34:52:045+0200").child('CarColor');
-
-// firebaseHeadingRef.on('value', function(datasnapshot) {
-//   Header1.innerText = datasnapshot.val();
-// });
-
-
-function submitClick() {
-
-  var firebaseRef = firebase.database().ref();
-
-  var messageText = mainText.value;
-
-  firebaseRef.push().set(messageText);
-};
 
 var dbRef = firebase.database();
-var rootRef = dbRef.ref('Fines').child('0000').orderByKey();
-
+var rootRefUser;
+var rootRef;
+var fineRef;
+var MunicipalID, Municipality, Fname, Lname;
 var FineTable = [];
 var FineCarDetails = [];
 var FineTypeDetails = [];
 
-rootRef.once("value")
-  .then(function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-      // key will be "ada" the first time and "alan" the second time
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    var uid = user.uid;
+    var rootRefUser = dbRef.ref("Users").child(uid);
+    rootRefUser.once('value').then(function(snapshot) {
+      MunicipalID = snapshot.child("MID").val();
+      Municipality = snapshot.child("Municipality").val();
+      Fname = snapshot.child("Fname").val();
+      Lname = snapshot.child("Lname").val();
 
-      // childData will be the actual contents of the child
-      var Address = childSnapshot.child("Address").val();
-      var CarBrand = childSnapshot.child("CarBrand").val();
-      var CarColor = childSnapshot.child("CarColor").val();
-      var CarCountry = childSnapshot.child("CarCountry").val();
-      var CarPlate = childSnapshot.child("CarPlate").val();
-      var CarType = childSnapshot.child("CarType").val();
-      var date = childSnapshot.child("Date").val();
-      var Day = childSnapshot.child("Day").val();
-      var FineAmount = childSnapshot.child("FineAmount").val();
-      var FinePoints = childSnapshot.child("FinePoints").val();
-      var FineType = childSnapshot.child("FineType").val();
-      var Lat = childSnapshot.child("Lat").val();
-      var Lon = childSnapshot.child("Lon").val();
-      var Paid = childSnapshot.child("Paid").val();
-      var Time = childSnapshot.child("Time").val();
-      var UserID = childSnapshot.child("UserID").val();
+      $(document).ready(function(){
+        $(".municipality_name").html(Municipality);
+      });
+      document.getElementById("navbarDropdownMenuLink").childNodes[0].nodeValue=Fname + " " + Lname;
 
-      if (Paid == "No") {
-        Paid = "Πληρωμή";
-      } else {
-        Paid = "Πληρώθηκε";
-      }
+      rootRef = dbRef.ref('Fines').child(MunicipalID).orderByKey();
+      getFineData();
+    });
+  } else {
+    window.location.href = "../index.html";
+  }
+})
 
-      FineTable.push(['', CarPlate, date, Time, FineAmount, Paid, '', CarCountry]);
-      FineCarDetails.push([CarPlate + " (" + CarCountry + ")", CarColor, CarBrand, CarType]);
-      FineTypeDetails.push([FineType, FineAmount, Day + " " + date + " " + Time, Address]);
+function getFineData () {
+  rootRef.once("value")
+    .then(function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        // key will be "ada" the first time and "alan" the second time
+        var FineID = childSnapshot.key;
+        // childData will be the actual contents of the child
+        var Address = childSnapshot.child("Address").val();
+        var CarBrand = childSnapshot.child("CarBrand").val();
+        var CarColor = childSnapshot.child("CarColor").val();
+        var CarCountry = childSnapshot.child("CarCountry").val();
+        var CarPlate = childSnapshot.child("CarPlate").val();
+        var CarType = childSnapshot.child("CarType").val();
+        var date = childSnapshot.child("Date").val();
+        var Day = childSnapshot.child("Day").val();
+        var FineAmount = childSnapshot.child("FineAmount").val();
+        var FinePoints = childSnapshot.child("FinePoints").val();
+        var FineType = childSnapshot.child("FineType").val();
+        var Lat = childSnapshot.child("Lat").val();
+        var Lon = childSnapshot.child("Lon").val();
+        var Paid = childSnapshot.child("Paid").val();
+        var Time = childSnapshot.child("Time").val();
+        var UserID = childSnapshot.child("UserID").val();
+
+        if (Paid == "No") {
+          Paid = "Πληρωμή";
+        } else {
+          Paid = "Πληρώθηκε";
+        }
+
+        FineTable.push([FineID, '', CarPlate, date, Time, FineAmount + "€", Paid, '', CarCountry]);
+        FineCarDetails.push([CarPlate + " (" + CarCountry + ")", CarColor, CarBrand, CarType]);
+        FineTypeDetails.push([FineType, FineAmount + "€", Day + " " + date + " " + Time, Address]);
+    });
+    populateDatatable();
+    return FineTable;
   });
+}
+
+function populateDatatable () {
   $(document).ready(function() {
       var table = $('#datatable').DataTable( {
           data : FineTable,
 
           "columns": [
+              { title: "Κωδικός Κλήσης"},
               {
                   "className":      'details-control ',
                   "orderable":      false,
@@ -125,13 +115,13 @@ rootRef.once("value")
 
           "columnDefs": [
             {
-                "targets": [1],
+                "targets": [2],
                 "render": function ( data, type, row ) {
-                    return data +' ('+ row[7]+')';
+                    return data +' ('+ row[8]+')';
                 }
             },
             {
-                "targets": [7],
+                "targets": [0, 8],
                 "visible": false,
                 "searchable": false
             },
@@ -142,8 +132,18 @@ rootRef.once("value")
 
       // Pay Button
       $('#datatable tbody').on('click', 'td.pay-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
         var cell = table.cell( this );
+        fineRef = dbRef.ref('Fines').child(MunicipalID).child(FineTable [row.index()][0])
+        fineRef.update({"Paid" : "Yes"});
+        table.destroy();
+        FineTable = [];
+        FineCarDetails = [];
+        FineTypeDetails = [];
+        getFineData();
 
+        /*
         if ( cell == "Πληρωμή" ) {
           tr.removeClass('pay-control')
             tr.addClass('pay-control-paid');
@@ -152,6 +152,7 @@ rootRef.once("value")
           tr.removeClass('pay-control-paid')
             tr.addClass('pay-control');
         }
+        */
       } );
 
       // Add event listener for opening and closing details
@@ -177,22 +178,9 @@ rootRef.once("value")
 
       } );
   } );
-  return FineTable;
-});
+}
 
-/*
-var completearray = new Array;
-// var finedat = [];
-rootRef.on("child_added", function(data) {
-  console.log(data.val())
-  data.forEach(function(childSnapshot) {
-    var key = childSnapshot.key;
-    var childData = childSnapshot.val();
-  });
-});
-*/
-
-function format ( d ) {
+function format (d) {
   var fineCarTable = FineCarDetails
   var fineTypeTable = FineTypeDetails
     // `d` is the original data object for the row
