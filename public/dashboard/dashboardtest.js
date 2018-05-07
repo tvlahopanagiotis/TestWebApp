@@ -127,6 +127,13 @@ function populateDatatable () {
             },
           ],
 
+          "createdRow": function ( row, data, index ) {
+            if ( data[6] == "Πληρώθηκε" ) {
+              $('td', row).eq(5).removeClass('pay-control');
+                $('td', row).eq(5).addClass('pay-control1');
+            }
+        },
+
           "order": [[1, 'asc']]
       } );
 
@@ -135,23 +142,30 @@ function populateDatatable () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
         var cell = table.cell( this );
-        fineRef = dbRef.ref('Fines').child(MunicipalID).child(FineTable [row.index()][0])
-        fineRef.update({"Paid" : "Yes"});
+        if (FineTable [row.index()][6] == "Πληρωμή") {
+          fineRef = dbRef.ref('Fines').child(MunicipalID).child(FineTable [row.index()][0])
+          fineRef.update({"Paid" : "Yes"});
+          table.destroy();
+          FineTable = [];
+          FineCarDetails = [];
+          FineTypeDetails = [];
+          window.location.href = "dashboardtest.html";
+        } /*else {
+          fineRef = dbRef.ref('Fines').child(MunicipalID).child(FineTable [row.index()][0])
+          fineRef.update({"Paid" : "No"});
+          table.destroy();
+          FineTable = [];
+          FineCarDetails = [];
+          FineTypeDetails = [];
+          window.location.href = "dashboardtest.html";
+        }*/
+
+        /*
         table.destroy();
         FineTable = [];
         FineCarDetails = [];
         FineTypeDetails = [];
         getFineData();
-
-        /*
-        if ( cell == "Πληρωμή" ) {
-          tr.removeClass('pay-control')
-            tr.addClass('pay-control-paid');
-        }
-        else {
-          tr.removeClass('pay-control-paid')
-            tr.addClass('pay-control');
-        }
         */
       } );
 
@@ -175,7 +189,7 @@ function populateDatatable () {
 
       // Print Button
       $('#datatable tbody').on('click', 'td.print-control', function () {
-
+        $('#myModal').modal(options);
       } );
   } );
 }

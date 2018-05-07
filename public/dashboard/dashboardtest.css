@@ -2450,7 +2450,7 @@ Created using IcoMoon - icomoon.io
 
 .table > thead > tr > th {
   border-bottom-width: 1px;
-  font-size: 1.45em;
+  font-size: 1.00em;
   font-weight: 300;
   border: 0; }
 
@@ -3599,7 +3599,13 @@ td.pay-control {
 }
 
 td.pay-control1 {
+  padding: 5px;
   background:#39c0ba;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 25px;
+  border: 5px solid #fff;
+  text-align: center;
 }
 
 td.print-control {
@@ -3610,10 +3616,6 @@ td.print-control {
     border-radius: 25px;
     border: 5px solid #fff;
     text-align: center;
-}
-
-tr.shown td.print-control {
-    background: #39c0ba;
 }
 
 .dataTables_filter input {
