@@ -12,6 +12,7 @@ var FineTable = [];
 var FineCarDetails = [];
 var FineTypeDetails = [];
 
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     var uid = user.uid;
@@ -216,10 +217,19 @@ function populateDatatable () {
 
       // Print Button
       $('#datatable tbody').on('click', 'td.print-control', function () {
+        var prtContent = document.getElementById("print");
+        var WinPrint = window.open('', '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
       } );
   } );
 }
-
+var appBanners = document.getElementsByClassName('print'), i;
+for (i = 0; i < appBanners.length; i += 1) {
+    appBanners[i].style.display = 'none';
+  };
 function format (d) {
   var fineCarTable = FineCarDetails
   var fineTypeTable = FineTypeDetails
