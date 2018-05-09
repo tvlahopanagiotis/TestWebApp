@@ -23,6 +23,10 @@ firebase.auth().onAuthStateChanged(function(user) {
       Fname = snapshot.child("Fname").val();
       Lname = snapshot.child("Lname").val();
 
+      //print variables
+      document.getElementById("Municipalityname").innerHTML = Municipality;
+      document.getElementById("OTA").innerHTML = MunicipalID;
+
       $(document).ready(function(){
         $(".municipality_name").html(Municipality);
       });
@@ -65,6 +69,13 @@ function getFineData () {
         } else {
           Paid = "Πληρώθηκε";
         }
+
+        document.getElementById("arithmoskikloforias").innerHTML = CarPlate;
+        // document.getElementById("Municipalityname").innerHTML = Municipality;
+        // document.getElementById("Municipalityname").innerHTML = Municipality;
+        // document.getElementById("Municipalityname").innerHTML = Municipality;
+        // document.getElementById("Municipalityname").innerHTML = Municipality;
+        // document.getElementById("Municipalityname").innerHTML = Municipality;
 
         FineTable.push([FineID, '', CarPlate, date, Time, FineAmount + "€", Paid, '', CarCountry]);
         FineCarDetails.push([CarPlate + " (" + CarCountry + ")", CarColor, CarBrand, CarType]);
@@ -272,6 +283,10 @@ function format (d) {
         '</tr>'+
     '</table>';
 };
+
+
+
+
 
 document.getElementById('logout').addEventListener('click', function(event) {
   firebase.auth().signOut();
