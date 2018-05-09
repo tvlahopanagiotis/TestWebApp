@@ -157,44 +157,21 @@ function populateDatatable () {
               keyboard: false
           });
 
-          /*
-          $('#exampleModalCenter').on('shown.bs.modal', function (e) {
-            $''
-            document.getElementById("payConfirmClick").onclick = updatePaid();
-
+          $('#payConfirmClick').on('click', function(evt) {
+          document.getElementById("payConfirmClick").onclick = updatePaid();
             function updatePaid() {
-              fineRef.update({"Paid" : "Yes"});
+              var d = new Date();
+              var n = d.toISOString();
+              fineRef.update({"Paid" : n});
+
               table.destroy();
               FineTable = [];
               FineCarDetails = [];
               FineTypeDetails = [];
               window.location.href = "dashboardtest.html";
             }
-          });*/
-          /*
-          fineRef.update({"Paid" : "Yes"});
-          table.destroy();
-          FineTable = [];
-          FineCarDetails = [];
-          FineTypeDetails = [];
-          window.location.href = "dashboardtest.html";*/
-        } /*else {
-          fineRef = dbRef.ref('Fines').child(MunicipalID).child(FineTable [row.index()][0])
-          fineRef.update({"Paid" : "No"});
-          table.destroy();
-          FineTable = [];
-          FineCarDetails = [];
-          FineTypeDetails = [];
-          window.location.href = "dashboardtest.html";
-        }*/
-
-        /*
-        table.destroy();
-        FineTable = [];
-        FineCarDetails = [];
-        FineTypeDetails = [];
-        getFineData();
-        */
+          });
+        }
       } );
 
       // Add event listener for opening and closing details
