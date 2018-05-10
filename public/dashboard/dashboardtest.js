@@ -72,11 +72,11 @@ function getFineData () {
         } else {
           Paid = "Πληρώθηκε";
         }
-        ///////////////////////
+
 
         FineTable.push([FineID, '', CarPlate, date, Time, FineAmount + "€", Paid, '', CarCountry]);
         FineCarDetails.push([CarPlate + " (" + CarCountry + ")", CarColor, CarBrand, CarType]);
-        FineTypeDetails.push([FineType, FineAmount + "€", Day + " " + date + " " + Time, Address]);
+        FineTypeDetails.push([FineType, FineAmount + "€", Day + " " + date + " " + Time, Address, Day, date, Time]);
     });
     populateDatatable();
     return FineTable;
@@ -186,18 +186,7 @@ function populateDatatable () {
       $('#datatable tbody').on('click', 'td.details-control', function () {
           var tr = $(this).closest('tr');
           var row = table.row( tr );
-          //print variables p.2
-          document.getElementById("printCarPlate").innerHTML = FineCarDetails[row.index()][0];
-          document.getElementById("printCarType").innerHTML = CarType;
-          document.getElementById("printCarBrand").innerHTML = CarBrand;
-          document.getElementById("printCarColor").innerHTML = CarColor;
-          document.getElementById("posoprostimou").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineAmount;
-          document.getElementById("posopliromis").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineAmount;
-          document.getElementById("imerominia").innerHTML = date;
-          document.getElementById("imera").innerHTML = Day;
-          document.getElementById("wra").innerHTML = Time;
-          document.getElementById("dieuthinsi").innerHTML = Address;
-          document.getElementById("paravasi").innerHTML = FineType;
+
 
           if ( row.child.isShown() ) {
               // This row is already open - close it
@@ -216,6 +205,21 @@ function populateDatatable () {
       $('#datatable tbody').on('click', 'td.print-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
+
+        //print variables p.2
+        document.getElementById("printCarPlate").innerHTML = FineCarDetails[row.index()][0];
+        document.getElementById("printCarType").innerHTML = FineCarDetails[row.index()][1];
+        document.getElementById("printCarBrand").innerHTML = FineCarDetails[row.index()][2];
+        document.getElementById("printCarColor").innerHTML = FineCarDetails[row.index()[3]]
+        document.getElementById("posoprostimou").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineTypeDetails[row.index()][1];
+        document.getElementById("posopliromis").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineTypeDetails[row.index()][1];
+        document.getElementById("imerominia").innerHTML = FineTypeDetails[row.index()][5];
+        document.getElementById("imera").innerHTML = FineTypeDetails[row.index()][4];
+        document.getElementById("wra").innerHTML = FineTypeDetails[row.index()][6]
+        document.getElementById("dieuthinsi").innerHTML = FineTypeDetails[row.index()][3];
+        document.getElementById("paravasi").innerHTML = FineTypeDetails[row.index()][0];
+        ///////////////////////
+
         var prtContent = document.getElementById("print");
         var WinPrint = window.open('', '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
