@@ -72,19 +72,6 @@ function getFineData () {
         } else {
           Paid = "Πληρώθηκε";
         }
-
-        //print variables p.2
-        document.getElementById("arithmoskikloforias").innerHTML = CarPlate;
-        document.getElementById("eidos").innerHTML = CarType;
-        document.getElementById("marka").innerHTML = CarBrand;
-        document.getElementById("xrwma").innerHTML = CarColor;
-        document.getElementById("posoprostimou").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineAmount;
-        document.getElementById("posopliromis").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineAmount;
-        document.getElementById("imerominia").innerHTML = date;
-        document.getElementById("imera").innerHTML = Day;
-        document.getElementById("wra").innerHTML = Time;
-        document.getElementById("dieuthinsi").innerHTML = Address;
-        document.getElementById("paravasi").innerHTML = FineType;
         ///////////////////////
 
         FineTable.push([FineID, '', CarPlate, date, Time, FineAmount + "€", Paid, '', CarCountry]);
@@ -199,6 +186,18 @@ function populateDatatable () {
       $('#datatable tbody').on('click', 'td.details-control', function () {
           var tr = $(this).closest('tr');
           var row = table.row( tr );
+          //print variables p.2
+          document.getElementById("printCarPlate").innerHTML = FineCarDetails[row.index()][0];
+          document.getElementById("printCarType").innerHTML = CarType;
+          document.getElementById("printCarBrand").innerHTML = CarBrand;
+          document.getElementById("printCarColor").innerHTML = CarColor;
+          document.getElementById("posoprostimou").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineAmount;
+          document.getElementById("posopliromis").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineAmount;
+          document.getElementById("imerominia").innerHTML = date;
+          document.getElementById("imera").innerHTML = Day;
+          document.getElementById("wra").innerHTML = Time;
+          document.getElementById("dieuthinsi").innerHTML = Address;
+          document.getElementById("paravasi").innerHTML = FineType;
 
           if ( row.child.isShown() ) {
               // This row is already open - close it
@@ -215,6 +214,8 @@ function populateDatatable () {
 
       // Print Button
       $('#datatable tbody').on('click', 'td.print-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
         var prtContent = document.getElementById("print");
         var WinPrint = window.open('', '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
@@ -224,10 +225,12 @@ function populateDatatable () {
       } );
   } );
 }
+
 var appBanners = document.getElementsByClassName('print'), i;
 for (i = 0; i < appBanners.length; i += 1) {
     appBanners[i].style.display = 'none';
   };
+
 function format (d) {
   var fineCarTable = FineCarDetails
   var fineTypeTable = FineTypeDetails
