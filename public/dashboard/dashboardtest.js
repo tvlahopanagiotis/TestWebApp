@@ -26,6 +26,9 @@ firebase.auth().onAuthStateChanged(function(user) {
       //print variables
       document.getElementById("Municipalityname").innerHTML = Municipality;
       document.getElementById("OTA").innerHTML = MunicipalID;
+      document.getElementById("onoma_astynomou").innerHTML = Fname;
+      document.getElementById("epitheto_astynomou").innerHTML = Lname;
+      ///////////////////////
 
       $(document).ready(function(){
         $(".municipality_name").html(Municipality);
@@ -70,12 +73,19 @@ function getFineData () {
           Paid = "Πληρώθηκε";
         }
 
+        //print variables p.2
         document.getElementById("arithmoskikloforias").innerHTML = CarPlate;
-        // document.getElementById("Municipalityname").innerHTML = Municipality;
-        // document.getElementById("Municipalityname").innerHTML = Municipality;
-        // document.getElementById("Municipalityname").innerHTML = Municipality;
-        // document.getElementById("Municipalityname").innerHTML = Municipality;
-        // document.getElementById("Municipalityname").innerHTML = Municipality;
+        document.getElementById("eidos").innerHTML = CarType;
+        document.getElementById("marka").innerHTML = CarBrand;
+        document.getElementById("xrwma").innerHTML = CarColor;
+        document.getElementById("posoprostimou").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineAmount;
+        document.getElementById("posopliromis").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineAmount;
+        document.getElementById("imerominia").innerHTML = date;
+        document.getElementById("imera").innerHTML = Day;
+        document.getElementById("wra").innerHTML = Time;
+        document.getElementById("dieuthinsi").innerHTML = Address;
+        document.getElementById("paravasi").innerHTML = FineType;
+        ///////////////////////
 
         FineTable.push([FineID, '', CarPlate, date, Time, FineAmount + "€", Paid, '', CarCountry]);
         FineCarDetails.push([CarPlate + " (" + CarCountry + ")", CarColor, CarBrand, CarType]);
