@@ -24,10 +24,11 @@ firebase.auth().onAuthStateChanged(function(user) {
       Lname = snapshot.child("Lname").val();
 
       //print variables
-      document.getElementById("Municipalityname").innerHTML = Municipality;
-      document.getElementById("OTA").innerHTML = MunicipalID;
-      document.getElementById("onoma_astynomou").innerHTML = Fname;
-      document.getElementById("epitheto_astynomou").innerHTML = Lname;
+      document.getElementById("printMunicipality").innerHTML = Municipality;
+      document.getElementById("printMunicipality1").innerHTML = Municipality;
+      document.getElementById("printMID").innerHTML = MunicipalID;
+      document.getElementById("printFname").innerHTML = Fname;
+      document.getElementById("printLname").innerHTML = Lname;
       ///////////////////////
 
       $(document).ready(function(){
@@ -72,11 +73,11 @@ function getFineData () {
         } else {
           Paid = "Πληρώθηκε";
         }
-        ///////////////////////
+
 
         FineTable.push([FineID, '', CarPlate, date, Time, FineAmount + "€", Paid, '', CarCountry]);
         FineCarDetails.push([CarPlate + " (" + CarCountry + ")", CarColor, CarBrand, CarType]);
-        FineTypeDetails.push([FineType, FineAmount + "€", Day + " " + date + " " + Time, Address]);
+        FineTypeDetails.push([FineType, FineAmount + "€", Day + " " + date + " " + Time, Address, Day, date, Time]);
     });
     populateDatatable();
     return FineTable;
@@ -175,7 +176,7 @@ function populateDatatable () {
               table.destroy();
               FineTable = [];
               FineCarDetails = [];
-              FineTypeDetails = [];
+              FineTypeDetails= [];
               window.location.href = "dashboardtest.html";
             }
           });
@@ -186,18 +187,7 @@ function populateDatatable () {
       $('#datatable tbody').on('click', 'td.details-control', function () {
           var tr = $(this).closest('tr');
           var row = table.row( tr );
-          //print variables p.2
-          document.getElementById("printCarPlate").innerHTML = FineCarDetails[row.index()][0];
-          document.getElementById("printCarType").innerHTML = CarType;
-          document.getElementById("printCarBrand").innerHTML = CarBrand;
-          document.getElementById("printCarColor").innerHTML = CarColor;
-          document.getElementById("posoprostimou").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineAmount;
-          document.getElementById("posopliromis").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineAmount;
-          document.getElementById("imerominia").innerHTML = date;
-          document.getElementById("imera").innerHTML = Day;
-          document.getElementById("wra").innerHTML = Time;
-          document.getElementById("dieuthinsi").innerHTML = Address;
-          document.getElementById("paravasi").innerHTML = FineType;
+
 
           if ( row.child.isShown() ) {
               // This row is already open - close it
@@ -216,6 +206,24 @@ function populateDatatable () {
       $('#datatable tbody').on('click', 'td.print-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
+
+
+        // Ε ΜΑ ΤΙ ΜΩΡΟ ΕΙΣΑΙ ΕΣΥ. Οκ φευγω. :(
+        //print variables p.2
+        document.getElementById("printCarPlate").innerHTML = FineCarDetails[row.index()][0];
+        document.getElementById("printCarType").innerHTML = FineCarDetails[row.index()][3];
+        document.getElementById("printCarBrand").innerHTML = FineCarDetails[row.index()][2];
+        document.getElementById("printCarColor").innerHTML = FineCarDetails[row.index()][1];
+        document.getElementById("printFineAmount").innerHTML = FineTypeDetails[row.index()][1];
+        document.getElementById("printFineAmountP").innerHTML = FineTypeDetails[row.index()][1];
+        document.getElementById("printDateP").innerHTML = FineTypeDetails[row.index()][5];
+        document.getElementById("printDate").innerHTML = FineTypeDetails[row.index()][5];
+        document.getElementById("printDay").innerHTML = FineTypeDetails[row.index()][4];
+        document.getElementById("printTime").innerHTML = FineTypeDetails[row.index()][6]
+        document.getElementById("printAddress").innerHTML = FineTypeDetails[row.index()][3];
+        document.getElementById("printFineType").innerHTML = FineTypeDetails[row.index()][0];
+        ///////////////////////
+
         var prtContent = document.getElementById("print");
         var WinPrint = window.open('', '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
@@ -225,11 +233,12 @@ function populateDatatable () {
       } );
   } );
 }
-
+/*
 var appBanners = document.getElementsByClassName('print'), i;
 for (i = 0; i < appBanners.length; i += 1) {
     appBanners[i].style.display = 'none';
   };
+  */
 
 function format (d) {
   var fineCarTable = FineCarDetails
