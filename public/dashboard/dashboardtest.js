@@ -24,10 +24,11 @@ firebase.auth().onAuthStateChanged(function(user) {
       Lname = snapshot.child("Lname").val();
 
       //print variables
-      document.getElementById("Municipalityname").innerHTML = Municipality;
-      document.getElementById("OTA").innerHTML = MunicipalID;
-      document.getElementById("onoma_astynomou").innerHTML = Fname;
-      document.getElementById("epitheto_astynomou").innerHTML = Lname;
+      document.getElementById("printMunicipality").innerHTML = Municipality;
+      document.getElementById("printMunicipality1").innerHTML = Municipality;
+      document.getElementById("printMID").innerHTML = MunicipalID;
+      document.getElementById("printFname").innerHTML = Fname;
+      document.getElementById("printLname").innerHTML = Lname;
       ///////////////////////
 
       $(document).ready(function(){
@@ -175,7 +176,7 @@ function populateDatatable () {
               table.destroy();
               FineTable = [];
               FineCarDetails = [];
-              FineTypeDetails = [];
+              FineTypeDetails= [];
               window.location.href = "dashboardtest.html";
             }
           });
@@ -206,18 +207,21 @@ function populateDatatable () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
 
+
+        // Ε ΜΑ ΤΙ ΜΩΡΟ ΕΙΣΑΙ ΕΣΥ. Οκ φευγω. :(
         //print variables p.2
         document.getElementById("printCarPlate").innerHTML = FineCarDetails[row.index()][0];
-        document.getElementById("printCarType").innerHTML = FineCarDetails[row.index()][1];
+        document.getElementById("printCarType").innerHTML = FineCarDetails[row.index()][3];
         document.getElementById("printCarBrand").innerHTML = FineCarDetails[row.index()][2];
-        document.getElementById("printCarColor").innerHTML = FineCarDetails[row.index()[3]]
-        document.getElementById("posoprostimou").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineTypeDetails[row.index()][1];
-        document.getElementById("posopliromis").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FineTypeDetails[row.index()][1];
-        document.getElementById("imerominia").innerHTML = FineTypeDetails[row.index()][5];
-        document.getElementById("imera").innerHTML = FineTypeDetails[row.index()][4];
-        document.getElementById("wra").innerHTML = FineTypeDetails[row.index()][6]
-        document.getElementById("dieuthinsi").innerHTML = FineTypeDetails[row.index()][3];
-        document.getElementById("paravasi").innerHTML = FineTypeDetails[row.index()][0];
+        document.getElementById("printCarColor").innerHTML = FineCarDetails[row.index()][1];
+        document.getElementById("printFineAmount").innerHTML = FineTypeDetails[row.index()][1];
+        document.getElementById("printFineAmountP").innerHTML = FineTypeDetails[row.index()][1];
+        document.getElementById("printDateP").innerHTML = FineTypeDetails[row.index()][5];
+        document.getElementById("printDate").innerHTML = FineTypeDetails[row.index()][5];
+        document.getElementById("printDay").innerHTML = FineTypeDetails[row.index()][4];
+        document.getElementById("printTime").innerHTML = FineTypeDetails[row.index()][6]
+        document.getElementById("printAddress").innerHTML = FineTypeDetails[row.index()][3];
+        document.getElementById("printFineType").innerHTML = FineTypeDetails[row.index()][0];
         ///////////////////////
 
         var prtContent = document.getElementById("print");
