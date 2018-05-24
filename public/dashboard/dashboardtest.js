@@ -1,4 +1,4 @@
-const app =  firebase.app();
+﻿const app =  firebase.app();
 var database = firebase.database();
 var Header1 = document.getElementById('Header1');
 var search_field = document.getElementById('search_field');
@@ -7,11 +7,13 @@ var dbRef = firebase.database();
 var rootRefUser;
 var rootRef;
 var fineRef;
+var municipalityRef;
 var MunicipalID, Municipality, Fname, Lname;
+var munAddress, munBank, munBankIBAN, munDepartment, munEmail, munName, munPayAddress1, munPayAddress2, munPayAddress3, munPayName, munPostNum, munRegion, munTel1, munTel2;
 var FineTable = [];
 var FineCarDetails = [];
 var FineTypeDetails = [];
-
+var FineLatLong = [];
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -24,9 +26,9 @@ firebase.auth().onAuthStateChanged(function(user) {
       Lname = snapshot.child("Lname").val();
 
       //print variables
-      document.getElementById("printMunicipality").innerHTML = Municipality;
-      document.getElementById("printMunicipality1").innerHTML = Municipality;
-      document.getElementById("printMID").innerHTML = MunicipalID;
+      //document.getElementById("printMunicipality").innerHTML = Municipality;
+      //document.getElementById("printMunicipality1").innerHTML = Municipality;
+      //document.getElementById("printMID").innerHTML = MunicipalID;
       document.getElementById("printFname").innerHTML = Fname;
       document.getElementById("printLname").innerHTML = Lname;
       ///////////////////////
@@ -37,12 +39,47 @@ firebase.auth().onAuthStateChanged(function(user) {
       document.getElementById("navbarDropdownMenuLink").childNodes[0].nodeValue=Fname + " " + Lname;
 
       rootRef = dbRef.ref('Fines').child(MunicipalID).orderByKey();
-      getFineData();
+      municipalityRef = dbRef.ref('Municipalities').child(MunicipalID);
+      getMunicipalityData();
     });
   } else {
     window.location.href = "../index.html";
   }
 })
+
+function getMunicipalityData () {
+  municipalityRef.once('value').then(function(snapshot) {
+        munAddress = snapshot.child("MunAddress").val();
+        munBank = snapshot.child("MunBank").val();
+        munBankIBAN = snapshot.child("MunBankIBAN").val();
+        munDepartment = snapshot.child("MunDepartment").val();
+        munEmail = snapshot.child("MunEmail").val();
+        munName = snapshot.child("MunName").val();
+        munPayAddress1 = snapshot.child("MunPayAddress1").val();
+        munPayAddress2 = snapshot.child("MunPayAddress2").val();
+        munPayAddress3 = snapshot.child("MunPayAddress3").val();
+        munPayName = snapshot.child("MunPayName").val();
+        munPostNum = snapshot.child("MunPostNum").val();
+        munRegion = snapshot.child("MunRegion").val();
+        munTel1 = snapshot.child("MunTel1").val();
+        munTel2 = snapshot.child("MunTel2").val();
+
+        document.getElementById("mRegion").innerHTML = munRegion;
+        document.getElementById("mName").innerHTML = munName;
+        document.getElementById("mDepartment").innerHTML = munDepartment;
+        document.getElementById("mAddress").innerHTML = munAddress;
+        document.getElementById("mTel1").innerHTML = munTel1;
+        document.getElementById("mTel2").innerHTML = munTel2;
+        document.getElementById("mEmail").innerHTML = munEmail;
+        document.getElementById("mPay").innerHTML = munPayName;
+        document.getElementById("mPayAddress1").innerHTML = munPayAddress1;
+        document.getElementById("mPayAddress2").innerHTML = munPayAddress2;
+        document.getElementById("mPayAddress3").innerHTML = munPayAddress3;
+        document.getElementById("mBank").innerHTML = munBank;
+        document.getElementById("mBankIBAN").innerHTML = munIBAN;
+        getFineData();
+    });
+}
 
 function getFineData () {
   rootRef.once("value")
@@ -78,11 +115,16 @@ function getFineData () {
         FineTable.push([FineID, '', CarPlate, date, Time, FineAmount + "€", Paid, '', CarCountry]);
         FineCarDetails.push([CarPlate + " (" + CarCountry + ")", CarColor, CarBrand, CarType]);
         FineTypeDetails.push([FineType, FineAmount + "€", Day + " " + date + " " + Time, Address, Day, date, Time]);
+        FineLatLong.push([CarPlate, Lat, Lon]);
     });
     populateDatatable();
     return FineTable;
   });
 }
+JsBarcode("#barcode", "]1007608[1504174[16]", {
+  width: 2.5,
+  height: 40
+});
 
 function populateDatatable () {
   $(document).ready(function() {
@@ -207,9 +249,6 @@ function populateDatatable () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
 
-
-        // Ε ΜΑ ΤΙ ΜΩΡΟ ΕΙΣΑΙ ΕΣΥ. Οκ φευγω. :(
-        //print variables p.2
         document.getElementById("printCarPlate").innerHTML = FineCarDetails[row.index()][0];
         document.getElementById("printCarType").innerHTML = FineCarDetails[row.index()][3];
         document.getElementById("printCarBrand").innerHTML = FineCarDetails[row.index()][2];
@@ -224,6 +263,7 @@ function populateDatatable () {
         document.getElementById("printFineType").innerHTML = FineTypeDetails[row.index()][0];
         ///////////////////////
 
+
         var prtContent = document.getElementById("print");
         var WinPrint = window.open('', '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
@@ -233,12 +273,13 @@ function populateDatatable () {
       } );
   } );
 }
-/*
+
+/**
 var appBanners = document.getElementsByClassName('print'), i;
 for (i = 0; i < appBanners.length; i += 1) {
     appBanners[i].style.display = 'none';
   };
-  */
+*/
 
 function format (d) {
   var fineCarTable = FineCarDetails

@@ -195,7 +195,7 @@
             </footer>
         </div>
     </div>
-    <div id="print" class="print">
+    <!--div id="print" class="print">
       <div>
           <style>
           * {
@@ -210,10 +210,8 @@
                   float: left;
                   width: 10%;
             }
-
             .contain {
               object-fit: fill;
-
             }
             .column15 {
                   float: left;
@@ -276,7 +274,6 @@
               height: 75px;
               width: 75px;
             }
-
               /* Clear floats after the columns */
             .row:after {
                   content: "";
@@ -548,12 +545,380 @@
               <b>&emsp;&emsp;Ημερομηνία</b>..................... &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>Ο Διοικητής</b>
             </p>
       </div>
+    </div-->
+    <div id="print" class="print">
+      <div>
+          <style>
+          * {
+                  box-sizing: border-box;
+            }
+              /* Create two equal columns that floats next to each other */
+            .column5 {
+                  float: left;
+                  width: 5%;
+            }
+            .column10 {
+                  float: left;
+                  width: 10%;
+            }
+
+            .contain {
+              object-fit: fill;
+
+            }
+            .column15 {
+                  float: left;
+                  width: 15%;
+            }
+            .column20 {
+                  float: left;
+                  width: 20%;
+            }
+            .column25 {
+                  float: left;
+                  width: 25%;
+            }
+            .column30 {
+                  float: left;
+                  width: 30%;
+            }
+            .column35 {
+                  float: left;
+                  width: 35%;
+            }
+            .column40 {
+                  float: left;
+                  width: 40%;
+            }
+            .column50 {
+                  float: left;
+                  width: 50%;
+            }
+            .column60 {
+                  float: left;
+                  width: 60%;
+            }
+            .column70{
+                  float: left;
+                  width: 70%;
+            }
+            .column75{
+                  float: left;
+                  width: 75%;
+            }
+            .column80 {
+                  float: left;
+                  width: 80%;
+            }
+            .column80 {
+                  float: left;
+                  width: 80%;
+            }
+            .column95 {
+                  float: left;
+                  width: 95%;
+            }
+            .column100 {
+                  float: left;
+                  width: 105%;
+            }
+            .column50m {
+                  float: left;
+                  width: 50%;
+                  vertical-align: middle;
+            }
+            .column60m {
+                  float: left;
+                  width: 60%;
+            }
+            .logo1 {
+              height: 75px;
+              width: 75px;
+            }
+
+              /* Clear floats after the columns */
+            .row:after {
+                  content: "";
+                  display: table;
+                  clear: both;
+            }
+            div.ex1 {
+              border: 1px solid black;
+              outline-style: solid;
+              outline-color: black;
+              outline-width: thin;
+                }
+            p1 {
+              text-decoration: underline;
+               }
+          </style>
+            <div class="row" style="font-family:verdana;">
+              <div class="column40">
+                <p align="center">
+                  <img class="contain" alt="Greece" src="../assets/img/greece.png"><br>
+                  <b>ΕΛΛΗΝΙΚΗ ΔΗΜΟΚΡΑΤΙΑ</b><br><br>
+                  <b id=mRegion></b><br>
+                  <b id=mName></b><br>
+                  <b id=mDepartment></b><br>
+                  <span id=mAddress></span><br>
+                  ΤΗΛ: <span id=mTel1></span><br>
+                       <span id=mTel2></span><br>
+                 email:<br>
+                 <span id=mEmail></span>
+                </p>
+              </div>
+              <div class="column60">
+                <p>
+                  <svg id="barcode"></svg>
+                </p>
+              </div>
+            </div>
+            <div class="row" style="font-family:verdana;">
+              <div class="column100">
+                <p align="center">
+                  <b>ΠΡΑΞΗ ΒΕΒΑΙΩΣΗΣ ΠΑΡΑΒΑΣΗΣ ΜΕ 'Η ΧΩΡΙΣ ΕΠΙΒΟΛΗ ΠΡΟΣΤΙΜΟΥ</b><br>
+                </p>
+                <div class="row">
+                  <div class="column50">
+                    <p align="left">
+                      <b>No 100760</b>
+                    </p>
+                  </div>
+                  <div class="column50">
+                    <p align="left">
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="font-family:verdana;">
+              <div class="column50">
+                <p>
+                  <b>ΣΤΟΙΧΕΙΑ ΟΔΗΓΟΥ</b><br>
+                  <div class="row">ΕΠΩΝΥΜΟ ...............................................................<br></div>
+                  <div class="row">ΟΝΟΜΑ ...................................................................<br></div>
+                  <div class="row">ΟΝ.ΠΑΤΕΡΑ .............................................................<br></div>
+                  <div class="row">ΟΝ.ΜΗΤΕΡΑΣ ...........................................................<br></div>
+                  <div class="row">ΗΜΕΡ.ΓΕΝ. ..............................................................<br></div>
+                  <div class="row">ΤΟΠΟΣ ΓΕΝ. ............................................................</div>
+                </p>
+                <p>
+                  <b>ΔΙΕΥΘΥΝΣΗ ΚΑΤΟΙΚΙΑΣ</b><br>
+                  <div class="row">ΔΗΜΟΣ-ΚΟΙΝ. .........................................................<br></div>
+                  <div class="row">
+                    <div class="column70">
+                      ΟΔΟΣ ...................................................</b>
+                    </div>
+                    <div class="column30">
+                      ΑΡ ..........</b>
+                    </div>
+                  </div>
+                  <div class="row">ΑΣΤΥΝ.ΤΜΗΜΑ ........................................................<br></div>
+                  <div class="row">Α.Δ.ΤΑΥΤ. ...............................................................<br></div>
+                  <div class="row">Α.Φ.Μ. ...................................................................<br></div>
+                </p>
+              </div>
+              <div class="column50">
+                <p>
+                  <b>ΣΤΟΙΧΕΙΑ ΟΧΗΜΑΤΟΣ-ΙΔΙΟΚΤΗΤΗ</b><br>
+                  <div class="row">
+                    <div class="column60">
+                      ΑΡΙΘ.ΚΥΚΛ.  <b id="printCarPlate"></b>
+                    </div>
+                    <div class="column40">
+                      ΕΙΔΟΣ  <b id="printCarType"></b>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="column50">
+                      ΜΑΡΚΑ  <b id="printCarBrand"></b>
+                    </div>
+                    <div class="column50">
+                      ΧΡΩΜΑ  <b id="printCarColor"></b>
+                    </div>
+                  </div>
+                  <div class="row">ΙΔΙΟΚΤΗΤΗΣ&emsp;&emsp;ΝΑΙ&emsp; &#9645;&emsp;&emsp;&emsp; ΟΧΙ&emsp; &#x25AD;<br></div>
+                  <div class="row">ΕΠΩΝΥΜΟ ...............................................................<br></div>
+                  <div class="row">ΟΝΟΜΑ ...................................................................<br></div>
+                  <div class="row">ΟΝ.ΠΑΤΕΡΑ .............................................................<br></div>
+                  <div class="row">Δ/ΝΣΗ ΚΑΤΟΙΚΙΑΣ....................................................</div>
+                  <div class="row">
+                    <div class="column70">
+                      ΟΔΟΣ ...................................................</b>
+                    </div>
+                    <div class="column30">
+                      ΑΡ ..........</b>
+                    </div>
+                  </div>
+                  ΑΣΤΥΝ.ΤΜΗΜΑ .........................................................
+                </p>
+                <p>
+                  <b>ΣΤΟΙΧΕΙΑ ΑΔΕΙΑΣ ΙΚΑΝΟΤΗΤΑΣ</b><br>
+                  <div class="row">ΟΝ/ΝΥΜΟ ................................................................</div>
+                  <div class="row" style="font-family:verdana;">
+                    <div class="column50">ΑΡΙΘ ....................................</div>
+                    <div class="column50">ΗΜΕΡ. .......................</div>
+                  </div>
+                  <div class="row" style="font-family:verdana;">
+                    <div class="column60">ΕΚΔ. ΑΡΧΗ .....................................</div>
+                    <div class="column40">ΚΑΤΗΓ. .............</div>
+                  </div>
+                  <br><br>
+                </p>
+              </div>
+            </div>
+            <div class="row" style="font-family:verdana;">
+              <div class="column5">
+                <p align="right">
+                  &#9733;
+                </p>
+              </div>
+              <div class="column20">
+                <div class="ex1">
+                  <div class="row" style="font-family:verdana;">
+                    <div class="column50">Ποσό<br>προστίμου</div>
+                    <div class="column50m"><b id="printFineAmount" style="font-size:20"></b></div>
+                  </div>
+                </div>
+              </div>
+              <div class="column15">
+                <p>
+                </p>
+              </div>
+              <div class="column5">
+                <p align="right">
+                  &#9733;&#9733;
+                </p>
+              </div>
+              <div class="column20">
+                <div class="ex1">
+                  <div class="row" style="font-family:verdana;">
+                    <div class="column50"><b>Ποσό<br>πληρωμής</b></div>
+                    <div class="column50m"><b id="printFineAmountP" style="font-size:20"></b></div>
+                  </div>
+                </div>
+              </div>
+              <div class="column5">
+                <p>
+                </p>
+              </div>
+              <div class="column30">
+                <div class="ex1">
+                  <div class="row" style="font-family:verdana;">
+                    <div class="column40"><b>Ημερομηνία<br>Βεβαίωσης</b></div>
+                    <div class="column60m"><b id="printDateP" style="font-size:25"></b></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="font-family:verdana;">
+              <div class="column5">
+                <p align="right">
+                  &#9733;<br>
+                  &#9733;&#9733;<br>
+                </p>
+              </div>
+              <div class="column95">
+                <p align="left">
+                  Το ποσό προστίμου συμπληρώνεται από τον Δημοτικό Αστυνομικό που βεβαιώνει την παράβαση.<br>
+                  Το ποσό πληρωμής συμπληρώνεται από τον Υπάλληλο είσπραξης.<br><br><br>
+                </p>
+              </div>
+            </div>
+            <p style="font-family:verdana;">
+              <b>1.</b> Ο/Η <b id="printFname"></b> <b id="printLname"></b> κατέβαλα τον/ην ανωτέρο οδηγό την <b id="printDate"></b>
+              ημέρα <b id="printDay"></b> και ώρα <b id="printTime"></b> στη(ν)<br> <b id="printAddress"></b> να διαπράττει την/τις σημειούμενες με Χ παραβάση/σεις, για τις οποίες σας επιβάλλεται διοικητικό πρόστιμο<br>
+              <b><u>ΠΑΡΑΒΑΣΕΙΣ του Κ.Ο.Κ.</u></b><br>
+              <b>&#8999;</b>
+              <span id="printFineType"></span><br><br><br><br><br><br>
+              <b>2.</b> Η Παράβαση  περιλαμβάνεται στο ΣΕΣΟ: ΝΑΙ &#9645; ΒΑΘΜΟΙ ..................... ΟΧΙ &#9645; ........... ανωτέρω οδηγός ενημερώθηκε προφορικά για τους βαθμούς που αντιστοιχούν στην παράβαση αυτή.<br>
+              <b>3.</b> Aφαιρέθηκαν επί τόπου άδεια οδήγ. &#9645; 'Αδεια κυκλ. &#9645; Πινακίδες &#9645; του ανωτέρω οχήματος για ...... ημέρες<br>
+              <b>4.</b> Με την παρούσα επιτρέπεται η οδήγηση του οχήματος από τον τόπο της παράβασης μέχρι το χώρο φύλαξής του ή σε άλλο νόμιμο χώρο από τη συντομότερη διαδρομή.
+            </p-->
+            <div class="row" style="font-family:verdana;">
+              <div class="column5">
+                <p>
+                </p>
+              </div>
+              <div class="column30">
+                <p align="left">
+                  Ο ΠΑΡΑΒΑΤΗΣ
+                </p>
+              </div>
+              <div class="column30">
+                <p align="center">
+                  <br><br><br><br><br><br><br><br><br><br><br>
+                </p>
+              </div>
+              <div class="column30">
+                <p align="right">
+                  Ο ΔΗΜΟΤΙΚΟΣ ΑΣΤΥΝΟΜΙΚΟΣ
+                </p>
+              </div>
+              <div class="column5">
+                <p>
+                </p>
+              </div>
+            </div>
+            <p style="font-family:verdana;" align="justify">
+              <b>ΠΛΗΡΟΦΟΡΙΕΣ ΓΙΑ ΤΟΝ ΠΑΡΑΒΑΤΗ</b><br><br>
+              1. Ο παραβάτης της παρούσας Έκθεσης μπορεί να εμφανισθεί αντός τριών (3) ημερών από την επίδοση ή βεβαίωση της παράβασης κατά τις ώρες γραφείου, στον Προϊστάμενο της Υπηρεσίας που ανήκει ο Δημοτικός Αστυνομικός ο οποίος βεβαίωσε την παράβαση και να εκθέσει τυχόν αντιρρήσεις του.<br>
+              2. Ο παραβάτης υποχρεούται:<br>
+              &emsp; &#8226; Εφόσον έχει σταθμεύσει παράνομα, να μετακινήσει το όχημα σε χώρο όπου επιτρέπεται η στάθμευση.<br>
+              &emsp; &#8226; Να προσκομίσει στην Υπηρεσία, που μνημονεύεται στην πρώτη σελίδα, τα μη αφαιρεθέντα στοιχεία.
+            </p>
+            <div class="row" style="font-family:verdana;">
+              <div class="column5">
+                <p>
+                </p>
+              </div>
+              <div class="column30">
+                <p align="left">
+                  Άδεια ικανότητας &emsp; &emsp; &#9645;
+                </p>
+              </div>
+              <div class="column30">
+                <p align="center">
+                  Άδεια κυκλοφοφορίας &emsp; &emsp; &#9645;
+                </p>
+              </div>
+              <div class="column30">
+                <p align="right">
+                  Πινακίδες &emsp; &emsp; &#9645;
+                </p>
+              </div>
+              <div class="column5">
+                <p>
+                  <br>
+                </p>
+              </div>
+            </div>
+            <p style="font-family:verdana;" align="justify">
+              <b>3. ΤΡΟΠΟΣ ΠΛΗΡΩΜΗΣ ΚΛΗΣΗ</b><br><br>
+              Η πληρωμή πραγματοπιείται:<br>
+              Α) στα ταμεία του <span id=mPay></span>:<br>
+              &emsp; &#8226; <span id=mPayAddress1></span><br>
+              &emsp; &#8226; <span id=mPayAddress2></span><br>
+              &emsp; &#8226; <span id=mPayAddress3></span><br><br>
+              Β) Σε οποιοδήποτε Ταχυδρομικό Κατάστημα & Πρακτορείο ΕΛΤΑ.<br><br>
+              Γ) Στην <span id=mBank></span>, στον λογαριασμό <span id=mBankIBAN></span> ή web banking στον ίδιο λογαριασμό. (Να αναγράφεται το ονοματεπώνυμο του οφειλέτη, ο αριθμός κυκλοφορίας του οχήματος και ο αριθμός κλήσης ΚΟΚ)<br><br>
+            </p>
+            <p style="font-family:verdana;" align="justify">
+              <b>4. ΠΡΑΞΗ ΕΠΙΒΟΛΗΣ ΔΙΟΙΚΗΤΙΚΗΣ ΠΟΙΝΗΣ</b> (Συμπληρώνεται από τον Προϊστάμενο).<br><br>
+              &emsp; &#8226; &#9645; Παρήλθε η τριήμερη προθεσμία από τη βεβαίωση της παράβασης χωρίς να εμφανιστεί ο παραβάτης.<br>
+              &emsp; &#8226; Οι ανιτρρήσεις του παραβάτη, που εμφανίστηκε την .............................................. κρίθικαν ΑΒΑΣΙΜΕΣ, ΒΑΣΙΜΕΣ <br>&emsp; &emsp;(Διαγράφεται η μία από τις δύο τελευταίες λέξεις, αναλόγως).<br>
+              &emsp; &#8226; Επιβάλλεται:<br>
+              &emsp; &ensp; &#9645; Διοικητικό πρόστιμο ........................................... ΕΥΡΩ στον παραβάτη, που αναφέρεται στην 1η σελίδα για την <br>&emsp; &emsp; &emsp;διαπραχθείσα ή τις διαπραχθείσες παραβάσεις.<br>
+              &emsp; &ensp; &#9645; Αφαίρεση της άδειας ικανότητας οδηγού και της άδειας κυκλοφορίας και των πινακίδων του αυτοκινήτου επί <br>&emsp; &emsp; &emsp;............................. ημέρες από την ημέρα της αφαίρεσής των.<br><br><br><br><br>
+              <b>&emsp;&emsp;Ημερομηνία</b>..................... &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>Ο Προϊστάμενος</b>
+            </p>
+      </div>
     </div>
 </body>
 
 
 <!--   Core JS Files   -->
-<script type="text/javascript" src="selectize.js"></script>
+<!--script type="text/javascript" src="../assets/js/plugins/selectize.js"></script-->
 <script src="../assets/js/core/popper.min.js"></script>
 <script src = "https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="../assets/js/core/bootstrap.min.js"></script>
@@ -580,6 +945,9 @@
    };
    firebase.initializeApp(config);
 </script>
+
+<!-- barcode scripts-->
+<script src="../assets/js/plugins/JsBarcode.all.min.js"></script>
 
 
 <!-- Datatables scripts-->
