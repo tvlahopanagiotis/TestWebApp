@@ -76,7 +76,7 @@ function getMunicipalityData () {
         document.getElementById("mPayAddress2").innerHTML = munPayAddress2;
         document.getElementById("mPayAddress3").innerHTML = munPayAddress3;
         document.getElementById("mBank").innerHTML = munBank;
-        document.getElementById("mBankIBAN").innerHTML = munIBAN;
+        document.getElementById("mIBAN").innerHTML = munBankIBAN;
         getFineData();
     });
 }
@@ -274,12 +274,10 @@ function populateDatatable () {
   } );
 }
 
-/**
 var appBanners = document.getElementsByClassName('print'), i;
 for (i = 0; i < appBanners.length; i += 1) {
     appBanners[i].style.display = 'none';
   };
-*/
 
 function format (d) {
   var fineCarTable = FineCarDetails
