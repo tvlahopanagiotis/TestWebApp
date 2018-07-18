@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8"/>
-  <title>RMA by Rhoé1</title>
+  <title>RMA by Rhoé</title>
   <!--img src="assets/img/app-positive.png" alt="Rhoé Logo"-->
   <!--TestPush-->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,600,700" rel="stylesheet">
@@ -20,17 +20,60 @@
     <button onclick="login()" id="login">Είσοδος</button>
   </div>
 
+
   <div id="user_div" class="loggedin-div">
     <img src="assets/img/app-negative.png" alt="Rhoé Logo">
     <h3>Καλώς ήλθατε!</h3>
     <p id="user_para"> Rhoé Municipal Database. We hope you're having a great day. You're currently logged in.</p>
-    <div class="btn" id="test">
-      <button onclick="window.location.href = 'dashboard/dashboardtest.html'">Μετάβαση στην πλατφόρμα</button>
+    <div>
+        <style>
+        * {
+                box-sizing: border-box;
+          }
+          .column10 {
+                float: left;
+                width: 10%;
+          }
+          .column50 {
+                float: left;
+                width: 50%;
+                padding: 5%;
+          }
+          .row:after {
+                content: "";
+                display: table;
+                clear: both;
+          }
+        </style>
+        <div class="row" >
+          <div class="column50">
+            <div class="btn" id="test">
+              <button onclick="window.location.href = 'dashboard/dashboardtest.html'">
+                <img id="off" src="assets/img/sports-car.png" alt="KOK"></img>
+                <img id="on" src="assets/img/sports-car1.png" alt="KOK1"></img>
+              </button>
+            </div>
+          </div>
+          <div class="column50">
+            <button onclick="logout()">
+              <img id="off" src="assets/img/stand-by.png" alt="logout"></img>
+              <img id="on" src="assets/img/stand-by1.png" alt="logout1"></img>
+            </button>
+          </div>
+        </div>
     </div>
-    <button onclick="logout()">Αποσύνδεση</button>
-
-    <!-- <a href="dashboard/dashboardtest.html"> Proceed to dashboard</a> -->
   </div>
+
+      <!--
+      <div class="btn" id="test">
+        <button onclick="window.location.href = 'dashboard/dashboardtest.html'">Μετάβαση στην πλατφόρμα</button>
+      </div>
+      <button onclick="logout()">Αποσύνδεση</button>
+      -->
+
+      <!-- <a href="dashboard/dashboardtest.html"> Proceed to dashboard</a> -->
+    </div>
+
 
 
 
