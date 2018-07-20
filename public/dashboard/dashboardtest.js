@@ -35,9 +35,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 
       $(document).ready(function(){
         $(".municipality_name").html(Municipality);
-        $(".municipality_officer").html(Fname + " " + Lname);
       });
+
       //document.getElementById("navbarDropdownMenuLink").childNodes[1].nodeValue=Fname + " " + Lname;
+      $(document).ready(function(){
+        $(".municipal_officer").html(Fname + " " + Lname);
+      });
 
       rootRef = dbRef.ref('Fines').child(MunicipalID).orderByKey();
       municipalityRef = dbRef.ref('Municipalities').child(MunicipalID);
