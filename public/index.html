@@ -34,10 +34,10 @@
                 float: left;
                 width: 10%;
           }
-          .column50 {
+          .column25 {
                 float: left;
-                width: 50%;
-                padding: 5%;
+                width: 25%;
+                padding: 1%;
           }
           .row:after {
                 content: "";
@@ -46,7 +46,7 @@
           }
         </style>
         <div class="row" >
-          <div class="column50">
+          <div class="column25">
             <div class="btn" id="test">
               <button onclick="window.location.href = 'dashboard/dashboardtest.html'">
                 <img id="off" src="assets/img/sports-car.png" alt="KOK"></img>
@@ -54,8 +54,24 @@
               </button>
             </div>
           </div>
-          <div class="column50">
-            <button onclick="logout()">
+          <div class="column25">
+            <div class="btn" id="test">
+              <button>
+                <img id="off" src="assets/img/trash-can.png" alt="Garbage"></img>
+                <img id="on" src="assets/img/trash-can1.png" alt="Garbage1"></img>
+              </button>
+            </div>
+          </div>
+          <div class="column25">
+            <div class="btn" id="test">
+              <button>
+                <img id="off" src="assets/img/no-smoking-sign.png" alt="Smoking"></img>
+                <img id="on" src="assets/img/no-smoking-sign1.png" alt="Smoking1"></img>
+              </button>
+            </div>
+          </div>
+          <div class="column25">
+            <button id="logoutbtn" onclick="logout()">
               <img id="off" src="assets/img/stand-by.png" alt="logout"></img>
               <img id="on" src="assets/img/stand-by1.png" alt="logout1"></img>
             </button>
