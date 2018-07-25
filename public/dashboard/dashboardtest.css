@@ -3649,4 +3649,20 @@ td.print-control {
   font-size: 20px;
   margin-bottom: 5px;
 }
+#xlsx {
+  position: absolute;
+  padding: 7px;
+  cursor: pointer;
+  color: #1f1f1f;
+  border-radius: 25px;
+  border: 5px solid #fff;
+  text-align: center;
+  top: 320px;
+  left: 20%;
+  background: #eaeaea;
+  border-radius: 25px;
+  border: 3px solid #008000;
+  font-size: 11px;
+  z-index: 1;
+};
 /*# sourceMappingURL=now-ui-dashboard.css.map */

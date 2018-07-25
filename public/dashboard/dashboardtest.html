@@ -14,7 +14,10 @@
     <!-- CSS Files -->
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link href="dashboardtest.css" rel="stylesheet" />
+    <link href="..\assets\bootstrap-3.3.7-dist\css\bootstrap.min.css" rel="stylesheet" />
+    <link href="..\assets\TableExport-master\src\stable\css\tableexport.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-html5-1.5.1/r-2.2.1/sc-1.4.4/datatables.min.css"/>
+    <!-- Workbook tools -->
 </head>
 
 <!-- Modal -->
@@ -944,6 +947,9 @@
             </p>
       </div>
     </div>
+    <!-- Workbook -->
+    <button type="button" id="xlsx">Δημιουργία Excel</button>
+    <!--  -->
 </body>
 
 
@@ -978,7 +984,13 @@
 
 <!-- barcode scripts-->
 <script src="../assets/js/plugins/JsBarcode.all.min.js"></script>
-
+<!-- Workbook scripts -->
+<script
+      src="https://code.jquery.com/jquery-2.1.4.js"
+      integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="
+      crossorigin="anonymous"></script>
+<script lang="javascript" src="xlsx.full.min.js"></script>
+<script lang="javascript" src="FileSaver.min.js"></script>
 
 <!-- Datatables scripts-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
