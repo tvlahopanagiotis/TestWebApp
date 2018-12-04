@@ -129,48 +129,16 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                              <img src="../assets/img/bar-chart.svg" class="img-responsive" id="comingsoon">
-                                <!-- <div class="table-responsive"> -->
-                                    <!-- <table id='datatable' class="table hover stripe" style="font-size:16px">
-                                      <thead style="font-size:16px">
-                                        <tr>
-                                          <th></th>
-                                          <th>Αρ. Κυκλοφορίας</th>
-                                          <th>Ημερομηνία</th>
-                                          <th>Ώρα</th>
-                                          <th>Ποσό Προστίμου</th>
-                                          <th>Εξόφληση</th>
-                                          <th></th>
-                                          <th>Χώρα</th>
-                                        </tr>
-                                      </thead> -->
-                                        <!-- <thead class=" text-primary">
-                                            <th id="Header1">
-                                                Πληρώθηκε
-                                            </th>
-                                            <th>
-                                                Πινακίδα Κυκλοφορίας
-                                            </th>
-                                            <th>
-                                                Είδος Αυτοκινήτου
-                                            </th>
-                                            <th>
-                                                Είδος Παράβασης
-                                            </th>
-                                            <th>
-                                                Ώρα
-                                            </th>
-                                            <th class="text-right">
-                                                Πρόστιμο
-                                            </th>
-                                        </thead>
-                                        <tbody id = "table_body">
-                                        </tbody> -->
-                                    <!-- </table> -->
+                                <canvas id="Chart" width="700" height="200"></canvas>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="Chart2" width='700' height="200"></canvas>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="Chart3" width='700' height="200"></canvas>
                             </div>
                             <div class="card-header" style="font-size:30px">
                               <div style="margin-bottom:50px">
-                                Σύντομα στον υπολογιστή σας!
                               </div>
                             </div>
                             </div>
@@ -193,16 +161,15 @@
 </body>
 
 
+
 <!--   Core JS Files   -->
 <script type="text/javascript" src="selectize.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
 <script src = "https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="../assets/js/core/bootstrap.min.js"></script>
 <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Chart JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="../assets/js/plugins/bootstrap-notify.js"></script>
 
@@ -221,23 +188,5 @@
    };
    firebase.initializeApp(config);
 </script>
-
-
-<!-- Datatables scripts-->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-html5-1.5.1/r-2.2.1/sc-1.4.4/datatables.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
-<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="dashboardtest.js"></script>
-<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-<!--script src="../assets/demo/demo.js"></script-->
-<!--script>
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-    });
-</script-->
-
+<script src='analytics.js'></script>
 </html>
