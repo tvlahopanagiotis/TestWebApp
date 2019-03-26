@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         $(".municipal_officer").html(Fname + " " + Lname);
       });
 
-      rootRef = dbRef.ref('Fines').child(MunicipalID).orderByKey();
+      rootRef = dbRef.ref('Fines').child(MunicipalID).child('VehicleFines').orderByKey();
       municipalityRef = dbRef.ref('Municipalities').child(MunicipalID);
       getMunicipalityData();
     });
